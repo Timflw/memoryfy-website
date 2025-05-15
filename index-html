@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Landingpage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1d2333;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: auto;
+      padding: 1rem 0;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+    }
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      margin: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn.outline {
+      background-color: transparent;
+      border: 2px solid #007bff;
+    }
+    .main-content {
+      margin-top: 4rem;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    p {
+      color: #aaa;
+      max-width: 600px;
+      margin: auto;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="font-weight: bold; font-size: 1.5rem;">BrandName</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Produkt</a>
+      <a href="#">Kontakt</a>
+    </nav>
+  </header>
+
+  <div class="main-content">
+    <p style="color:#00bfff; font-weight:600;">Jetzt mitmachen</p>
+    <h1>Hilf uns mit deinem Feedback</h1>
+    <p>Werde Teil unserer Entwicklung: Sag uns, was dir wichtig ist – oder teste unsere Plattform exklusiv vor allen anderen.</p>
+    
+    <div>
+      <a href="https://dein-umfrage-link.de" class="btn">Zielgruppenumfrage</a>
+      <a href="https://testuser-anmeldung.de" class="btn outline">Testuser werden</a>
+    </div>
+  </div>
+</body>
+</html>
