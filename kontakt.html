@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kontaktieren Sie das Memoryfy-Team. Finden Sie die richtigen Ansprechpartner für Ihr Anliegen." />
+  <title>Memoryfy - Kontakt</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #1d2333;
+      color: white;
+      text-align: center;
+      padding: 1.5rem; /* Etwas reduziert für mobile */
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      margin-bottom: 2rem; /* Abstand zum Hauptinhalt */
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+    .logo:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    nav {
+      display: flex; /* Wird auf Desktop verwendet */
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-weight: 500;
+      padding: 0.5rem; /* Vergrößert Klickfläche */
+    }
+    nav a:hover, nav a:focus {
+      text-decoration: underline;
+      color: #00bfff;
+    }
+    nav a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    .menu-toggle {
+      display: none; /* Standardmäßig versteckt, sichtbar auf mobil */
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem; /* Größeres Icon */
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .menu-toggle:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    /* Buttons (falls auf Kontaktseite benötigt, sonst entfernen) */
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 0.85rem 1.75rem; /* Etwas größer */
+      border: 2px solid #007bff; /* Konsistente Border für Layout */
+      border-radius: 6px;
+      margin: 0.5rem;
+      font-size: 1rem;
+      font-weight: 600; /* Bessere Lesbarkeit */
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease, color 0.2s ease; /* Animation */
+    }
+    .btn:hover, .btn:focus {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
+    .btn.outline {
+      background-color: transparent;
+      color: #007bff; /* Farbe für Text, passend zur Border */
+    }
+    .btn.outline:hover, .btn.outline:focus {
+      background-color: rgba(0, 123, 255, 0.1); /* Leichter Hover-Effekt */
+      color: #0056b3;
+    }
+
+
+    main { /* Umbenannt von .main-content */
+      margin-top: 2rem; /* Reduziert, da Header schon margin-bottom hat */
+      text-align: left; /* Text linksbündig für Kontaktdetails */
+    }
+
+    .highlight-text {
+      color: #00bfff;
+      font-weight: 600;
+      margin-bottom: 0.5rem; /* Abstand zur H1 */
+      text-align: center; /* highlight-text bleibt zentriert */
+    }
+
+    h1 {
+      font-size: 2.2rem; /* Etwas angepasst */
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 1.2; /* Wichtig für mehrzeilige Titel */
+      text-align: center; /* H1 bleibt zentriert */
+    }
+
+    p.subtitle { /* Spezifische Klasse für den Untertitel */
+      color: #c0c0c0; /* Helleres Grau für besseren Kontrast (4.96:1) */
+      max-width: 600px;
+      margin: auto auto 2rem auto;
+      text-align: center; /* Untertitel bleibt zentriert */
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+      gap: 2rem; /* Abstand zwischen den Kontakten */
+      margin-top: 2rem;
+      padding: 0 1rem; /* Leichter horizontaler Abstand */
+    }
+
+    .contact-card {
+      background-color: #2a3145; /* Etwas helleres Dunkelblau */
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: left; /* Inhalt der Karte linksbündig */
+    }
+
+    .contact-card h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #00bfff; /* Akzentfarbe für Namen */
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      font-size: 1rem;
+      color: #c0c0c0; /* Helleres Grau für Details */
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card a {
+        color: #007bff; /* Standard Link Farbe */
+        text-decoration: none;
+        transition: color 0.2s ease;
+    }
+
+    .contact-card a:hover, .contact-card a:focus {
+        color: #00bfff; /* Farbe beim Hover/Focus */
+        text-decoration: underline;
+    }
+
+    /* --- Mobile Optimierungen --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      header {
+        position: relative; /* Für absolute Positionierung des Menüs */
+      }
+
+      .menu-toggle {
+        display: block; /* Hamburger-Icon anzeigen */
+        z-index: 1001; /* Über dem Nav-Menü */
+      }
+
+      nav {
+        display: none; /* Navigation standardmäßig verstecken */
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%; /* Unterhalb des Headers */
+        left: 0;
+        right: 0;
+        background-color: #2a3145; /* Etwas anderer Hintergrund für das Menü */
+        padding: 1rem 0;
+        z-index: 1000;
+        border-bottom: 1px solid #00bfff;
+      }
+
+      nav.active {
+        display: flex; /* Navigation anzeigen, wenn aktiv */
+      }
+
+      nav a {
+        margin: 0.5rem 0;
+        padding: 0.75rem 1rem; /* Größere Klickflächen im mobilen Menü */
+        width: 80%; /* Links nehmen mehr Breite ein */
+        text-align: center;
+        border-radius: 4px;
+      }
+      nav a:hover, nav a:focus {
+        background-color: rgba(0, 123, 255, 0.1);
+        color: #00bfff;
+      }
+
+      h1 {
+        font-size: 1.8rem; /* Kleinere Schrift für H1 auf Mobil */
+      }
+
+      p.subtitle {
+        font-size: 0.95rem;
+      }
+
+      .contact-grid {
+          grid-template-columns: 1fr; /* Nur eine Spalte auf sehr kleinen Bildschirmen */
+          padding: 0; /* Kein horizontaler Abstand auf Mobil */
+      }
+
+      .contact-card {
+          padding: 1rem; /* Etwas weniger Padding auf Mobil */
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/" class="logo">Memoryfy</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+        &#9776; </button>
+      <nav id="mainNav">
+        <a href="#">Home</a>
+        <a href="#">Produkt</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </header>
+  </div>
+
+  <main class="container">
+    <p class="highlight-text">Kontakt aufnehmen</p>
+    <h1>Wir sind für Sie da</h1>
+    <p class="subtitle">Haben Sie Fragen, Feedback oder benötigen Sie Unterstützung? Kontaktieren Sie uns gerne direkt.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h2>Max Mustermann</h2>
+        <p>Rolle: CEO & Produktentwicklung</p>
+        <p>E-Mail: <a href="mailto:max.mustermann@memoryfy.de">max.mustermann@memoryfy.de</a></p>
+        </div>
+
+      <div class="contact-card">
+        <h2>Erika Mustermann</h2>
+        <p>Rolle: Kundenservice & Support</p>
+        <p>E-Mail: <a href="mailto:erika.mustermann@memoryfy.de">erika.mustermann@memoryfy.de</a></p>
+        </div>
+
+      <div class="contact-card">
+        <h2>Peter Müller</h2>
+        <p>Rolle: Marketing & Presse</p>
+        <p>E-Mail: <a href="mailto:peter.mueller@memoryfy.de">peter.mueller@memoryfy.de</a></p>
+        </div>
+    </div>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', function() {
+      const isExpanded = mainNav.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isExpanded);
+      if (isExpanded) {
+        menuToggle.innerHTML = '&times;'; // Schließen-Icon (X)
+      } else {
+        menuToggle.innerHTML = '&#9776;'; // Hamburger-Icon
+      }
+    });
+  </script>
+</body>
+</html>
