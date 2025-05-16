@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Erfahren Sie mehr über unsere Idee, werden Sie Test-User, nehmen Sie an unserer Zielgruppenumfrage teil oder machen Sie Namensvorschläge." />
-  <title>Unsere Vision - Machen Sie mit!</title>
+  <title>Memoryfy - Unsere Vision</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <style>
     * {
@@ -203,6 +203,89 @@
       text-align: left;
     }
 
+    /* Team-Bereich Styling */
+    .team-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      background-color: #2a3145;
+      border-radius: 8px;
+      overflow: hidden;
+      width: 280px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .team-member-image {
+      width: 100%;
+      height: 200px;
+      background-color: #3a4156;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c0c0c0;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+
+    .team-member-info {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .team-member-name {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member-role {
+      color: #00bfff;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .team-member-linkedin {
+      display: inline-block;
+      color: #0077b5;
+      background-color: rgba(0, 119, 181, 0.1);
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: background-color 0.2s ease;
+    }
+
+    .team-member-linkedin:hover {
+      background-color: rgba(0, 119, 181, 0.2);
+    }
+
+    /* Footer Styling */
+    footer {
+      background-color: #161b29;
+      padding: 1.5rem 0;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #a0a0a0;
+      margin-top: 2rem;
+    }
+
+    .legal-notice {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
     @media (max-width: 768px) {
       .desktop-nav {
         display: none;
@@ -236,12 +319,20 @@
         padding-left: 0.5rem;
         padding-right: 0.5rem;
       }
+
+      .team-container {
+        gap: 1.5rem;
+      }
+
+      .team-member {
+        width: 250px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="#" class="logo">MeineSeite</a>
+    <a href="#" class="logo">Memoryfy</a>
 
     <nav class="desktop-nav">
       <a href="#idee">Die Idee</a>
@@ -305,9 +396,55 @@
         <h2>Das Team</h2>
         <p>Hinter dieser Vision steht ein engagiertes und passioniertes Team aus Entwicklern, Designern und Strategen. Wir glauben fest daran, dass Technologie den Alltag verbessern und kreative Potenziale freisetzen kann. Mit vereinten Kräften arbeiten wir täglich daran, innovative Lösungen zu schaffen, die begeistern und echten Mehrwert bieten.</p>
         <p>Lernen Sie die Köpfe hinter dem Projekt kennen und erfahren Sie mehr über unsere Motivation und unsere Ziele. Wir freuen uns darauf, gemeinsam mit Ihnen Großes zu bewegen!</p>
+        
+        <!-- Team-Mitglieder -->
+        <div class="team-container">
+          <!-- Team-Mitglied 1 -->
+          <div class="team-member">
+            <div class="team-member-image">
+              <div>👤</div>
+            </div>
+            <div class="team-member-info">
+              <div class="team-member-name">Lisa Müller</div>
+              <div class="team-member-role">Produktentwicklung</div>
+              <a href="https://www.linkedin.com/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
+            </div>
+          </div>
+          
+          <!-- Team-Mitglied 2 -->
+          <div class="team-member">
+            <div class="team-member-image">
+              <div>👤</div>
+            </div>
+            <div class="team-member-info">
+              <div class="team-member-name">Michael Schmidt</div>
+              <div class="team-member-role">UI/UX Designer</div>
+              <a href="https://www.linkedin.com/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
+            </div>
+          </div>
+          
+          <!-- Team-Mitglied 3 -->
+          <div class="team-member">
+            <div class="team-member-image">
+              <div>👤</div>
+            </div>
+            <div class="team-member-info">
+              <div class="team-member-name">Thomas Weber</div>
+              <div class="team-member-role">Software-Entwicklung</div>
+              <a href="https://www.linkedin.com/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <!-- Footer mit rechtlichem Hinweis -->
+  <footer>
+    <div class="legal-notice">
+      <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt irgendwann ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
+    </div>
+  </footer>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
