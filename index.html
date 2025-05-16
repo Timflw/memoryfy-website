@@ -3,82 +3,259 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Landingpage</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta name="description" content="Werden Sie Teil der Memoryfy-Entwicklung. Geben Sie uns Feedback oder testen Sie unsere Plattform exklusiv." />
+  <title>Memoryfy - Hilf uns mit deinem Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #1d2333;
       color: white;
       text-align: center;
-      padding: 2rem;
+      padding: 1.5rem; /* Etwas reduziert für mobile */
+      line-height: 1.6;
     }
+
+    .container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      max-width: 1000px;
-      margin: auto;
       padding: 1rem 0;
+      margin-bottom: 2rem; /* Abstand zum Hauptinhalt */
     }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+    .logo:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    nav {
+      display: flex; /* Wird auf Desktop verwendet */
+    }
+
     nav a {
       color: white;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
+      padding: 0.5rem; /* Vergrößert Klickfläche */
     }
+    nav a:hover, nav a:focus {
+      text-decoration: underline;
+      color: #00bfff;
+    }
+    nav a:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
+    .menu-toggle {
+      display: none; /* Standardmäßig versteckt, sichtbar auf mobil */
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem; /* Größeres Icon */
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+    .menu-toggle:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 2px;
+    }
+
     .btn {
       background-color: #007bff;
       color: white;
-      padding: 0.75rem 1.5rem;
-      border: none;
+      padding: 0.85rem 1.75rem; /* Etwas größer */
+      border: 2px solid #007bff; /* Konsistente Border für Layout */
       border-radius: 6px;
       margin: 0.5rem;
       font-size: 1rem;
+      font-weight: 600; /* Bessere Lesbarkeit */
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
+      transition: background-color 0.2s ease, color 0.2s ease; /* Animation */
     }
+    .btn:hover, .btn:focus {
+      background-color: #0056b3;
+      border-color: #0056b3;
+    }
+    .btn:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
     .btn.outline {
       background-color: transparent;
-      border: 2px solid #007bff;
+      color: #007bff; /* Farbe für Text, passend zur Border */
     }
-    .main-content {
-      margin-top: 4rem;
+    .btn.outline:hover, .btn.outline:focus {
+      background-color: rgba(0, 123, 255, 0.1); /* Leichter Hover-Effekt */
+      color: #0056b3;
     }
+
+
+    main { /* Umbenannt von .main-content */
+      margin-top: 2rem; /* Reduziert, da Header schon margin-bottom hat */
+    }
+
+    .highlight-text {
+      color: #00bfff;
+      font-weight: 600;
+      margin-bottom: 0.5rem; /* Abstand zur H1 */
+    }
+
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.2rem; /* Etwas angepasst */
       font-weight: 800;
       margin-bottom: 1rem;
+      line-height: 1.2; /* Wichtig für mehrzeilige Titel */
     }
-    p {
-      color: #aaa;
+
+    p.subtitle { /* Spezifische Klasse für den Untertitel */
+      color: #c0c0c0; /* Helleres Grau für besseren Kontrast (4.96:1) */
       max-width: 600px;
-      margin: auto;
-      margin-bottom: 2rem;
+      margin: auto auto 2rem auto;
     }
+
+    .button-container {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column; /* Standard: Buttons untereinander */
+      align-items: center; /* Zentriert Buttons in Spalte */
+      gap: 1rem; /* Abstand zwischen Buttons */
+    }
+
+    /* --- Mobile Optimierungen --- */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      header {
+        position: relative; /* Für absolute Positionierung des Menüs */
+      }
+
+      .menu-toggle {
+        display: block; /* Hamburger-Icon anzeigen */
+        z-index: 1001; /* Über dem Nav-Menü */
+      }
+
+      nav {
+        display: none; /* Navigation standardmäßig verstecken */
+        flex-direction: column;
+        align-items: center;
+        position: absolute;
+        top: 100%; /* Unterhalb des Headers */
+        left: 0;
+        right: 0;
+        background-color: #2a3145; /* Etwas anderer Hintergrund für das Menü */
+        padding: 1rem 0;
+        z-index: 1000;
+        border-bottom: 1px solid #00bfff;
+      }
+
+      nav.active {
+        display: flex; /* Navigation anzeigen, wenn aktiv */
+      }
+
+      nav a {
+        margin: 0.5rem 0;
+        padding: 0.75rem 1rem; /* Größere Klickflächen im mobilen Menü */
+        width: 80%; /* Links nehmen mehr Breite ein */
+        text-align: center;
+        border-radius: 4px;
+      }
+      nav a:hover, nav a:focus {
+        background-color: rgba(0, 123, 255, 0.1);
+        color: #00bfff;
+      }
+
+      h1 {
+        font-size: 1.8rem; /* Kleinere Schrift für H1 auf Mobil */
+      }
+
+      p.subtitle {
+        font-size: 0.95rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+        width: 80%; /* Buttons nehmen mehr Breite ein */
+        max-width: 300px; /* Aber nicht zu breit */
+      }
+    }
+
+    /* --- Desktop Optimierungen für Button-Container --- */
+    @media (min-width: 769px) {
+      .button-container {
+        flex-direction: row; /* Buttons nebeneinander auf Desktop */
+        justify-content: center; /* Zentriert Buttons in Reihe */
+      }
+      .btn {
+        width: auto; /* Automatische Breite für Buttons auf Desktop */
+      }
+    }
+
   </style>
 </head>
 <body>
-  <header>
-    <div style="font-weight: bold; font-size: 1.5rem;">Memoryfy</div>
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Produkt</a>
-      <a href="#">Kontakt</a>
-    </nav>
-  </header>
+  <div class="container">
+    <header>
+      <a href="/" class="logo">Memoryfy</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+        &#9776; </button>
+      <nav id="mainNav">
+        <a href="#">Home</a>
+        <a href="#">Produkt</a>
+        <a href="#">Kontakt</a>
+      </nav>
+    </header>
+  </div>
 
-  <div class="main-content">
-    <p style="color:#00bfff; font-weight:600;">Jetzt mitmachen</p>
+  <main class="container">
+    <p class="highlight-text">Jetzt mitmachen</p>
     <h1>Hilf uns mit deinem Feedback</h1>
-    <p>Werde Teil unserer Entwicklung: Sag uns, was dir wichtig ist – oder teste unsere Plattform exklusiv vor allen anderen.</p>
+    <p class="subtitle">Werde Teil unserer Entwicklung: Sag uns, was dir wichtig ist – oder teste unsere Plattform exklusiv vor allen anderen.</p>
     
-    <div>
+    <div class="button-container">
       <a href="https://dein-umfrage-link.de" class="btn">Zielgruppenumfrage</a>
       <a href="https://testuser-anmeldung.de" class="btn outline">Testuser werden</a>
     </div>
-  </div>
+  </main>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+
+    menuToggle.addEventListener('click', function() {
+      const isExpanded = mainNav.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isExpanded);
+      if (isExpanded) {
+        menuToggle.innerHTML = '&times;'; // Schließen-Icon (X)
+      } else {
+        menuToggle.innerHTML = '&#9776;'; // Hamburger-Icon
+      }
+    });
+  </script>
 </body>
 </html>
