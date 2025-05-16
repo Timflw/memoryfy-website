@@ -1,10 +1,9 @@
-<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Werden Sie Teil der Memoryfy-Entwicklung. Geben Sie uns Feedback oder testen Sie unsere Plattform exklusiv." />
-  <title>Memoryfy - Hilf uns mit deinem Feedback</title>
+  <meta name="description" content="Erfahren Sie mehr über unsere Idee, werden Sie Test-User oder nehmen Sie an unserer Zielgruppenumfrage teil." />
+  <title>Unsere Vision - Machen Sie mit!</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
   <style>
     * {
@@ -13,26 +12,36 @@
       box-sizing: border-box;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       background-color: #1d2333;
       color: white;
-      text-align: center;
-      padding: 1.5rem; /* Etwas reduziert für mobile */
       line-height: 1.6;
+      /* Padding wird von Sektionen oder Header gesteuert, globales Padding hier entfernt oder reduziert */
     }
 
     .container {
       max-width: 1000px;
-      margin: auto;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
 
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
-      margin-bottom: 2rem; /* Abstand zum Hauptinhalt */
+      padding: 1rem 1.5rem; /* Padding für Header-Inhalt */
+      background-color: #1d2333; /* Stellt sicher, dass Header über scrollendem Inhalt liegt */
+      position: sticky; /* Hält den Header beim Scrollen oben */
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Leichte Trennlinie */
     }
 
     .logo {
@@ -46,32 +55,81 @@
       outline-offset: 2px;
     }
 
-    nav {
-      display: flex; /* Wird auf Desktop verwendet */
+    /* Desktop Navigation */
+    .desktop-nav {
+      display: flex;
+      align-items: center;
     }
-
-    nav a {
+    .desktop-nav a {
       color: white;
       text-decoration: none;
       margin: 0 1rem;
       font-weight: 500;
-      padding: 0.5rem; /* Vergrößert Klickfläche */
+      padding: 0.5rem;
     }
-    nav a:hover, nav a:focus {
+    .desktop-nav a:not(.btn):hover,
+    .desktop-nav a:not(.btn):focus {
       text-decoration: underline;
       color: #00bfff;
     }
-    nav a:focus {
+    .desktop-nav a:focus {
       outline: 2px solid #00bfff;
       outline-offset: 2px;
     }
 
+    .btn {
+      background-color: #007bff;
+      color: white;
+      padding: 0.75rem 1.5rem; /* Angepasst für Konsistenz */
+      border: 2px solid #007bff;
+      border-radius: 6px;
+      margin-left: 0.5rem; /* Margin für Buttons in der Nav oder im Content */
+      font-size: 0.95rem; /* Etwas kleiner für Nav-Button */
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+    .btn:hover, .btn:focus {
+      background-color: #0056b3;
+      border-color: #0056b3;
+      color: white;
+    }
+    .btn:focus {
+      outline: 2px solid #00bfff;
+      outline-offset: 3px;
+    }
+
+    /* Spezieller Style für den hervorgehobenen Button in der Desktop-Nav */
+    .btn-desktop-highlight {
+      background-color: #5252f2; /* Lila-Blau ähnlich Memorify */
+      border-color: #5252f2;
+    }
+    .btn-desktop-highlight:hover, .btn-desktop-highlight:focus {
+      background-color: #3d3ddc;
+      border-color: #3d3ddc;
+    }
+
+    /* Mobile spezifische Elemente (Button und Burger-Icon) */
+    .btn-mobile-highlight {
+      display: none; /* Wird per Media Query sichtbar */
+      background-color: #5252f2; /* Lila-Blau ähnlich Memorify */
+      border-color: #5252f2;
+      padding: 0.6rem 1.2rem; /* Etwas kompakter für Mobile Header */
+      font-size: 0.9rem;
+    }
+    .btn-mobile-highlight:hover, .btn-mobile-highlight:focus {
+      background-color: #3d3ddc;
+      border-color: #3d3ddc;
+    }
+
     .menu-toggle {
-      display: none; /* Standardmäßig versteckt, sichtbar auf mobil */
+      display: none; /* Wird per Media Query sichtbar */
       background: none;
       border: none;
       color: white;
-      font-size: 2rem; /* Größeres Icon */
+      font-size: 2rem;
       cursor: pointer;
       padding: 0.5rem;
     }
@@ -80,181 +138,186 @@
       outline-offset: 2px;
     }
 
-    .btn {
-      background-color: #007bff;
-      color: white;
-      padding: 0.85rem 1.75rem; /* Etwas größer */
-      border: 2px solid #007bff; /* Konsistente Border für Layout */
-      border-radius: 6px;
-      margin: 0.5rem;
-      font-size: 1rem;
-      font-weight: 600; /* Bessere Lesbarkeit */
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: background-color 0.2s ease, color 0.2s ease; /* Animation */
+    /* Mobiles Drawer-Menü */
+    .mobile-drawer {
+      display: none; /* Initial versteckt, wird durch JS .active gesteuert */
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      top: 100%; /* Direkt unterhalb des Headers */
+      left: 0;
+      right: 0;
+      background-color: #2a3145; /* Hintergrund für das Drawer-Menü */
+      padding: 1rem 0;
+      z-index: 999; /* Unter dem Header, aber über dem Content */
+      border-bottom: 1px solid #00bfff;
     }
-    .btn:hover, .btn:focus {
-      background-color: #0056b3;
-      border-color: #0056b3;
-    }
-    .btn:focus {
-      outline: 2px solid #00bfff;
-      outline-offset: 3px;
-    }
-
-    .btn.outline {
-      background-color: transparent;
-      color: #007bff; /* Farbe für Text, passend zur Border */
-    }
-    .btn.outline:hover, .btn.outline:focus {
-      background-color: rgba(0, 123, 255, 0.1); /* Leichter Hover-Effekt */
-      color: #0056b3;
-    }
-
-
-    main { /* Umbenannt von .main-content */
-      margin-top: 2rem; /* Reduziert, da Header schon margin-bottom hat */
-    }
-
-    .highlight-text {
-      color: #00bfff;
-      font-weight: 600;
-      margin-bottom: 0.5rem; /* Abstand zur H1 */
-    }
-
-    h1 {
-      font-size: 2.2rem; /* Etwas angepasst */
-      font-weight: 800;
-      margin-bottom: 1rem;
-      line-height: 1.2; /* Wichtig für mehrzeilige Titel */
-    }
-
-    p.subtitle { /* Spezifische Klasse für den Untertitel */
-      color: #c0c0c0; /* Helleres Grau für besseren Kontrast (4.96:1) */
-      max-width: 600px;
-      margin: auto auto 2rem auto;
-    }
-
-    .button-container {
-      margin-top: 2rem;
+    .mobile-drawer.active {
       display: flex;
-      flex-direction: column; /* Standard: Buttons untereinander */
-      align-items: center; /* Zentriert Buttons in Spalte */
-      gap: 1rem; /* Abstand zwischen Buttons */
     }
+    .mobile-drawer a {
+      color: white;
+      text-decoration: none;
+      margin: 0.5rem 0;
+      padding: 0.75rem 1rem;
+      width: 80%;
+      text-align: center;
+      border-radius: 4px;
+    }
+    .mobile-drawer a:hover, .mobile-drawer a:focus {
+      background-color: rgba(0, 123, 255, 0.1);
+      color: #00bfff;
+      outline: none;
+    }
+    .mobile-drawer a:focus {
+        outline: 1px solid #00bfff;
+        outline-offset: 1px;
+    }
+
+
+    /* Sektionen Styling */
+    .content-section {
+      padding: 4rem 0; /* Vertikaler Abstand zwischen Sektionen */
+      min-height: 70vh; /* Mindesthöhe, damit Scrollen sichtbar wird */
+    }
+    .content-section .container { /* Container innerhalb jeder Sektion */
+        text-align: center; /* Zentriert Inhalt im Container */
+    }
+
+    .content-section h2 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: white; /* Explizit setzen, falls Body-Farbe nicht greift */
+    }
+
+    .content-section p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      max-width: 700px; /* Gute Lesbarkeit für Textblöcke */
+      margin: 0 auto 1rem auto; /* Zentriert den Absatzblock, falls schmaler als Container */
+      color: #c0c0c0; /* Helleres Grau für Text */
+      text-align: left; /* Absätze linksbündig für bessere Lesbarkeit */
+    }
+
 
     /* --- Mobile Optimierungen --- */
     @media (max-width: 768px) {
-      body {
-        padding: 1rem;
+      .desktop-nav {
+        display: none; /* Desktop-Nav auf Mobil ausblenden */
       }
 
-      header {
-        position: relative; /* Für absolute Positionierung des Menüs */
+      .btn-mobile-highlight {
+        display: inline-block; /* Mobilen Highlight-Button anzeigen */
+        margin-left: auto; /* Schiebt Button nach links vom Burger-Icon */
+        margin-right: 1rem; /* Abstand zum Burger-Icon */
       }
 
       .menu-toggle {
-        display: block; /* Hamburger-Icon anzeigen */
-        z-index: 1001; /* Über dem Nav-Menü */
+        display: block; /* Burger-Icon auf Mobil anzeigen */
       }
 
-      nav {
-        display: none; /* Navigation standardmäßig verstecken */
-        flex-direction: column;
-        align-items: center;
-        position: absolute;
-        top: 100%; /* Unterhalb des Headers */
-        left: 0;
-        right: 0;
-        background-color: #2a3145; /* Etwas anderer Hintergrund für das Menü */
-        padding: 1rem 0;
-        z-index: 1000;
-        border-bottom: 1px solid #00bfff;
+      header {
+        padding: 0.75rem 1rem; /* Etwas weniger Padding im Header auf Mobil */
+      }
+      .logo {
+        font-size: 1.3rem; /* Kleinere Logo-Schrift auf Mobil */
       }
 
-      nav.active {
-        display: flex; /* Navigation anzeigen, wenn aktiv */
+      .content-section {
+        padding: 3rem 0; /* Weniger Padding für Sektionen auf Mobil */
       }
-
-      nav a {
-        margin: 0.5rem 0;
-        padding: 0.75rem 1rem; /* Größere Klickflächen im mobilen Menü */
-        width: 80%; /* Links nehmen mehr Breite ein */
-        text-align: center;
-        border-radius: 4px;
+      .content-section h2 {
+        font-size: 1.8rem;
       }
-      nav a:hover, nav a:focus {
-        background-color: rgba(0, 123, 255, 0.1);
-        color: #00bfff;
-      }
-
-      h1 {
-        font-size: 1.8rem; /* Kleinere Schrift für H1 auf Mobil */
-      }
-
-      p.subtitle {
-        font-size: 0.95rem;
-      }
-
-      .btn {
-        padding: 0.75rem 1.25rem;
-        font-size: 0.95rem;
-        width: 80%; /* Buttons nehmen mehr Breite ein */
-        max-width: 300px; /* Aber nicht zu breit */
+      .content-section p {
+        font-size: 1rem;
+        padding-left: 0.5rem; /* Kleine Anpassung falls Text zu nah am Rand */
+        padding-right: 0.5rem;
       }
     }
-
-    /* --- Desktop Optimierungen für Button-Container --- */
-    @media (min-width: 769px) {
-      .button-container {
-        flex-direction: row; /* Buttons nebeneinander auf Desktop */
-        justify-content: center; /* Zentriert Buttons in Reihe */
-      }
-      .btn {
-        width: auto; /* Automatische Breite für Buttons auf Desktop */
-      }
-    }
-
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a href="#" class="logo">Memoryfy</a>
-      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
-        &#9776; </button>
-      <nav id="mainNav">
-        <a href="#">Home</a>
-        <a href="#">Produkt</a>
-        <a href="kontakt.html">Kontakt</a>
-      </nav>
-    </header>
-  </div>
+  <header>
+    <a href="#" class="logo">MeineSeite</a>
 
-  <main class="container">
-    <p class="highlight-text">Jetzt mitmachen</p>
-    <h1>Hilf uns mit deinem Feedback</h1>
-    <p class="subtitle">Werde Teil unserer Entwicklung: Sag uns, was dir wichtig ist – oder teste unsere Plattform exklusiv vor allen anderen.</p>
-    
-    <div class="button-container">
-      <a href="https://dein-umfrage-link.de" class="btn">Zielgruppenumfrage</a>
-      <a href="https://testuser-anmeldung.de" class="btn outline">Testuser werden</a>
-    </div>
+    <nav class="desktop-nav">
+      <a href="#idee">Die Idee</a>
+      <a href="#umfrage">Zielgruppenumfrage</a>
+      <a href="#team">Das Team</a>
+      <a href="#testuser" class="btn btn-desktop-highlight">Test User Werden</a>
+    </nav>
+
+    <a href="#testuser" class="btn btn-mobile-highlight">Test User Werden</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+      &#9776; </button>
+
+    <nav class="mobile-drawer" id="mobileDrawer">
+      <a href="#idee">Die Idee</a>
+      <a href="#umfrage">Zielgruppenumfrage</a>
+      <a href="#team">Das Team</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="idee" class="content-section">
+      <div class="container">
+        <h2>Die Idee</h2>
+        <p>Stellen Sie sich eine Welt vor, in der Ihre besten Einfälle und kreativen Projekte mühelos Form annehmen. Unsere Plattform revolutioniert die Art und Weise, wie Ideen geboren, entwickelt und zur Marktreife geführt werden. Wir bieten intuitive Werkzeuge, eine kollaborative Umgebung und die nötige Inspiration, um aus einem Funken ein loderndes Feuer zu machen.</p>
+        <p>Von der ersten Notiz bis zum fertigen Konzept – wir begleiten Sie auf jedem Schritt Ihrer kreativen Reise. Entdecken Sie, wie einfach es sein kann, Visionen Wirklichkeit werden zu lassen.</p>
+      </div>
+    </section>
+
+    <section id="testuser" class="content-section" style="background-color: #2a3145;"> <div class="container">
+        <h2>Test User Werden</h2>
+        <p>Sie sind neugierig und möchten die Zukunft aktiv mitgestalten? Perfekt! Als Test User erhalten Sie exklusiven Zugang zu unseren neuesten Entwicklungen, noch bevor sie der Öffentlichkeit zugänglich gemacht werden. Ihr Feedback ist für uns Gold wert und hilft uns, unsere Produkte optimal auf die Bedürfnisse unserer Nutzer abzustimmen.</p>
+        <p>Melden Sie sich jetzt an und werden Sie Teil einer exklusiven Gruppe von Pionieren. Entdecken Sie neue Funktionen als Erster und teilen Sie uns Ihre Eindrücke mit. Ihre Meinung zählt!</p>
+        <a href="#" class="btn" style="margin-top: 1rem; background-color: #00bfff; border-color: #00bfff;">Jetzt als Test User registrieren</a>
+      </div>
+    </section>
+
+    <section id="umfrage" class="content-section">
+      <div class="container">
+        <h2>Zielgruppenumfrage</h2>
+        <p>Ihre Meinung ist uns wichtig! Um unsere Angebote stetig zu verbessern und passgenau auf Ihre Wünsche zuschneiden zu können, führen wir regelmäßig Umfragen durch. Nehmen Sie sich ein paar Minuten Zeit und helfen Sie uns mit Ihren Antworten, die bestmögliche Erfahrung für alle Nutzer zu schaffen.</p>
+        <p>Ihre Teilnahme ist anonym und Ihre Daten werden streng vertraulich behandelt. Als kleines Dankeschön verlosen wir unter allen Teilnehmern attraktive Preise. Machen Sie mit – jede Stimme zählt!</p>
+        <a href="#" class="btn outline" style="margin-top: 1rem; color: #00bfff; border-color: #00bfff;">Zur Umfrage (dauert nur 5 Min.)</a>
+      </div>
+    </section>
+
+    <section id="team" class="content-section" style="background-color: #232a3b;"> <div class="container">
+        <h2>Das Team</h2>
+        <p>Hinter dieser Vision steht ein engagiertes und passioniertes Team aus Entwicklern, Designern und Strategen. Wir glauben fest daran, dass Technologie den Alltag verbessern und kreative Potenziale freisetzen kann. Mit vereinten Kräften arbeiten wir täglich daran, innovative Lösungen zu schaffen, die begeistern und echten Mehrwert bieten.</p>
+        <p>Lernen Sie die Köpfe hinter dem Projekt kennen und erfahren Sie mehr über unsere Motivation und unsere Ziele. Wir freuen uns darauf, gemeinsam mit Ihnen Großes zu bewegen!</p>
+      </div>
+    </section>
   </main>
 
   <script>
     const menuToggle = document.getElementById('menuToggle');
-    const mainNav = document.getElementById('mainNav');
+    const mobileDrawer = document.getElementById('mobileDrawer');
 
     menuToggle.addEventListener('click', function() {
-      const isExpanded = mainNav.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', isExpanded);
+      const isExpanded = mobileDrawer.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', String(isExpanded)); // aria-expanded erwartet string
       if (isExpanded) {
         menuToggle.innerHTML = '&times;'; // Schließen-Icon (X)
       } else {
         menuToggle.innerHTML = '&#9776;'; // Hamburger-Icon
       }
+    });
+
+    // Schließe das Menü, wenn auf einen Link im Drawer geklickt wird
+    const drawerLinks = mobileDrawer.querySelectorAll('a');
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (mobileDrawer.classList.contains('active')) {
+          mobileDrawer.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.innerHTML = '&#9776;';
+        }
+      });
     });
   </script>
 </body>
