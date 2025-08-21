@@ -258,7 +258,7 @@
       display: flex;
       gap: 1rem;
       justify-content: center;
-      margin-bottom: 4rem;
+      margin-top: 3rem;
     }
 
     .app-preview {
@@ -479,6 +479,15 @@
 
     /* Responsive Design */
     @media (max-width: 768px) {
+      .header-content {
+        justify-content: flex-start;
+        gap: 0;
+      }
+      
+      .logo {
+        z-index: 10;
+      }
+      
       .desktop-nav {
         display: none;
       }
@@ -487,10 +496,14 @@
         display: inline-block;
         margin-left: auto;
         margin-right: 1rem;
+        position: static;
+        right: auto;
       }
 
       .menu-toggle {
         display: block;
+        position: static;
+        right: auto;
       }
 
       .hero {
@@ -573,13 +586,13 @@
           <h1>YOUR TRIP<br>YOUR STORY</h1>
           <p class="tagline">Revolutioniere die Art, wie du Videos erstellst – ohne Vorkenntnisse, ohne aufwendigen Schnitt.</p>
           
+          <div class="app-preview">
+            <img src="mobile.png" alt="Memoryfy App - Deine Erinnerungen als perfekte Videos" class="phone-mockup">
+          </div>
+          
           <div class="hero-buttons">
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn" target="_blank" rel="noopener">Test User werden</a>
             <a href="#idee" class="btn outline">Mehr erfahren</a>
-          </div>
-          
-          <div class="app-preview">
-            <img src="mobile.png" alt="Memoryfy App - Deine Erinnerungen als perfekte Videos" class="phone-mockup">
           </div>
         </div>
       </div>
