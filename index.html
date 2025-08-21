@@ -4,13 +4,28 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Erfahren Sie mehr über unsere Idee, werden Sie Test-User, nehmen Sie an unserer Zielgruppenumfrage teil oder machen Sie Namensvorschläge." />
-  <title>Memoryfy - Unsere Vision</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+  <title>Memoryfy - YOUR TRIP YOUR STORY</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    :root {
+      --primary-purple: #6366f1;
+      --primary-dark: #4f46e5;
+      --purple-light: #a5b4fc;
+      --background-dark: #0f172a;
+      --background-card: #1e293b;
+      --background-section: #334155;
+      --text-primary: #ffffff;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --accent-blue: #3b82f6;
+      --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+      --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
     }
 
     html {
@@ -19,115 +34,118 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #1d2333;
-      color: white;
+      background: var(--background-dark);
+      color: var(--text-primary);
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1.5rem;
-      padding-right: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
     }
 
+    /* Header */
     header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .header-content {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 1.5rem;
-      background-color: #1d2333;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .logo {
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
       font-size: 1.5rem;
-      color: white;
+      color: var(--text-primary);
       text-decoration: none;
+      transition: all 0.3s ease;
     }
-    .logo:focus {
-      outline: 2px solid #00bfff;
-      outline-offset: 2px;
+
+    .logo:hover {
+      transform: translateY(-1px);
     }
 
     .desktop-nav {
       display: flex;
       align-items: center;
+      gap: 2rem;
     }
+
     .desktop-nav a {
-      color: white;
+      color: var(--text-secondary);
       text-decoration: none;
-      margin: 0 1rem;
       font-weight: 500;
-      padding: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    .desktop-nav a:not(.btn):hover,
-    .desktop-nav a:not(.btn):focus {
-      text-decoration: underline;
-      color: #00bfff;
-    }
-    .desktop-nav a:focus {
-      outline: 2px solid #00bfff;
-      outline-offset: 2px;
+
+    .desktop-nav a:not(.btn):hover {
+      color: var(--text-primary);
+      background: rgba(99, 102, 241, 0.1);
     }
 
     .btn {
-      background-color: #007bff;
-      color: white;
+      background: var(--gradient-primary);
+      color: #ffffff;
       padding: 0.75rem 1.5rem;
-      border: 2px solid #007bff;
-      border-radius: 6px;
-      margin-left: 0.5rem;
-      font-size: 0.95rem;
-      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
-      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
-    }
-    .btn:hover, .btn:focus {
-      background-color: #0056b3;
-      border-color: #0056b3;
-      color: white;
-    }
-    .btn:focus {
-      outline: 2px solid #00bfff;
-      outline-offset: 3px;
-    }
-    .btn.outline {
-      background-color: transparent;
-      color: #007bff;
-    }
-    .btn.outline:hover, .btn.outline:focus {
-      background-color: rgba(0, 123, 255, 0.1);
-      color: #0056b3;
+      transition: all 0.3s ease;
     }
 
+    .btn:hover {
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
+
+    .btn.outline {
+      background: transparent;
+      border: 2px solid var(--primary-purple);
+      color: var(--primary-purple);
+      box-shadow: none;
+    }
+
+    .btn.outline:hover {
+      background: var(--primary-purple);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+    }
 
     .btn-desktop-highlight {
-      background-color: #5252f2;
-      border-color: #5252f2;
-    }
-    .btn-desktop-highlight:hover, .btn-desktop-highlight:focus {
-      background-color: #3d3ddc;
-      border-color: #3d3ddc;
+      background: var(--gradient-primary);
     }
 
     .btn-mobile-highlight {
       display: none;
-      background-color: #5252f2;
-      border-color: #5252f2;
+      background: var(--gradient-primary);
       padding: 0.6rem 1.2rem;
       font-size: 0.9rem;
-    }
-    .btn-mobile-highlight:hover, .btn-mobile-highlight:focus {
-      background-color: #3d3ddc;
-      border-color: #3d3ddc;
     }
 
     .menu-toggle {
@@ -135,13 +153,15 @@
       background: none;
       border: none;
       color: white;
-      font-size: 2rem;
+      font-size: 1.5rem;
       cursor: pointer;
       padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
-    .menu-toggle:focus {
-      outline: 2px solid #00bfff;
-      outline-offset: 2px;
+
+    .menu-toggle:hover {
+      background: rgba(99, 102, 241, 0.1);
     }
 
     .mobile-drawer {
@@ -152,140 +172,302 @@
       top: 100%;
       left: 0;
       right: 0;
-      background-color: #2a3145;
+      background: rgba(30, 41, 59, 0.95);
+      backdrop-filter: blur(10px);
       padding: 1rem 0;
       z-index: 999;
-      border-bottom: 1px solid #00bfff;
+      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
     }
+
     .mobile-drawer.active {
       display: flex;
     }
+
     .mobile-drawer a {
-      color: white;
+      color: var(--text-secondary);
       text-decoration: none;
       margin: 0.5rem 0;
       padding: 0.75rem 1rem;
       width: 80%;
       text-align: center;
-      border-radius: 4px;
-    }
-    .mobile-drawer a:hover, .mobile-drawer a:focus {
-      background-color: rgba(0, 123, 255, 0.1);
-      color: #00bfff;
-      outline: none;
-    }
-    .mobile-drawer a:focus {
-        outline: 1px solid #00bfff;
-        outline-offset: 1px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
     }
 
-    .content-section {
-      padding: 4rem 0;
-      min-height: 60vh;
-    }
-    .content-section .container {
-        text-align: center;
+    .mobile-drawer a:hover {
+      background: rgba(99, 102, 241, 0.1);
+      color: var(--text-primary);
     }
 
-    .content-section h2 {
-      font-size: 2.2rem;
+    /* Hero Section */
+    .hero {
+      padding: 8rem 0 6rem 0;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%236366f1" stop-opacity="0.1"/><stop offset="100%" stop-color="%236366f1" stop-opacity="0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23gradient)"/></svg>') center/cover;
+      opacity: 0.5;
+    }
+
+    .hero-content {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
-      color: white;
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
     }
 
-    .content-section p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      max-width: 700px;
-      margin: 0 auto 1rem auto;
-      color: #c0c0c0;
-      text-align: left;
+    .hero .tagline {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      font-weight: 500;
     }
 
-    /* Team-Bereich Styling */
-    .team-container {
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 4rem;
+    }
+
+    .app-preview {
       display: flex;
       justify-content: center;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 2rem;
-      margin-top: 2rem;
+      margin-top: 3rem;
+    }
+
+    .phone-mockup {
+      width: 300px;
+      height: auto;
+      filter: drop-shadow(0 20px 40px rgba(99, 102, 241, 0.3));
+      transform: perspective(1000px) rotateY(-15deg);
+      transition: all 0.3s ease;
+    }
+
+    .phone-mockup:hover {
+      transform: perspective(1000px) rotateY(0deg) translateY(-10px);
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 6rem 0;
+      position: relative;
+    }
+
+    .content-section:nth-child(even) {
+      background: var(--background-card);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .section-header .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .content-text h3 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .content-text p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .feature-card {
+      background: var(--background-card);
+      padding: 2rem;
+      border-radius: 16px;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-primary);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    }
+
+    .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card h4 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+
+    .feature-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* Team Section */
+    .team-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
     .team-member {
-      background-color: #2a3145;
-      border-radius: 8px;
+      background: var(--background-card);
+      border-radius: 16px;
       overflow: hidden;
-      width: 280px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      border: 1px solid rgba(99, 102, 241, 0.1);
+      transition: all 0.3s ease;
     }
 
     .team-member:hover {
       transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
+    }
+
+    .team-photo {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
     }
 
     .team-member-image {
       width: 100%;
-      height: 200px;
-      background-color: #3a4156;
+      height: 250px;
+      background: var(--gradient-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #c0c0c0;
-      font-size: 3rem;
-      overflow: hidden;
+      color: white;
+      font-size: 2rem;
     }
 
     .team-member-info {
-      padding: 1.5rem;
+      padding: 2rem;
       text-align: center;
     }
 
     .team-member-name {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      color: var(--text-primary);
     }
 
     .team-member-role {
-      color: #00bfff;
-      font-size: 0.9rem;
-      margin-bottom: 1rem;
+      color: var(--primary-purple);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
     }
 
     .team-member-linkedin {
       display: inline-block;
-      color: #0077b5;
-      background-color: rgba(0, 119, 181, 0.1);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
+      background: var(--gradient-primary);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: background-color 0.2s ease;
+      transition: all 0.3s ease;
+      margin: 0.25rem;
     }
 
     .team-member-linkedin:hover {
-      background-color: rgba(0, 119, 181, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
     }
 
-    /* Footer Styling */
+    /* Footer */
     footer {
-      background-color: #161b29;
-      padding: 1.5rem 0;
+      background: var(--background-dark);
+      padding: 3rem 0;
       text-align: center;
-      font-size: 0.9rem;
-      color: #a0a0a0;
-      margin-top: 2rem;
+      border-top: 1px solid rgba(99, 102, 241, 0.1);
     }
 
     .legal-notice {
-      max-width: 700px;
+      max-width: 800px;
       margin: 0 auto;
       padding: 0 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
+    /* Responsive Design */
     @media (max-width: 768px) {
       .desktop-nav {
         display: none;
@@ -301,125 +483,212 @@
         display: block;
       }
 
-      header {
-        padding: 0.75rem 1rem;
+      .hero {
+        padding: 6rem 0 4rem 0;
       }
-      .logo {
-        font-size: 1.3rem;
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero .tagline {
+        font-size: 1.1rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .phone-mockup {
+        width: 250px;
+        transform: none;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
       }
 
       .content-section {
-        padding: 3rem 0;
+        padding: 4rem 0;
       }
-      .content-section h2 {
-        font-size: 1.8rem;
-      }
-      .content-section p {
-        font-size: 1rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+
+      .features-grid {
+        grid-template-columns: 1fr;
       }
 
       .team-container {
-        gap: 1.5rem;
-      }
-
-      .team-member {
-        width: 250px;
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="#" class="logo">Memoryfy</a>
+    <div class="header-content">
+      <a href="#" class="logo">
+        <img src="logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
+      </a>
 
-    <nav class="desktop-nav">
-      <a href="#idee">Die Idee</a>
-      <a href="#umfrage">Zielgruppenumfrage</a>
+      <nav class="desktop-nav">
+        <a href="#idee">Die Idee</a>
+        <a href="#umfrage">Zielgruppenumfrage</a>
+        <a href="#team">Das Team</a>
+        <a href="#testuser" class="btn btn-desktop-highlight">Test User Werden</a>
+      </nav>
 
-      <a href="#team">Das Team</a>
-      <a href="#testuser" class="btn btn-desktop-highlight">Test User Werden</a>
-    </nav>
+      <a href="#testuser" class="btn btn-mobile-highlight">Test User Werden</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+        ☰
+      </button>
 
-    <a href="#testuser" class="btn btn-mobile-highlight">Test User Werden</a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
-      &#9776;
-    </button>
-
-    <nav class="mobile-drawer" id="mobileDrawer">
-      <a href="#idee">Die Idee</a>
-      <a href="#umfrage">Zielgruppenumfrage</a>
-
-      <a href="#team">Das Team</a>
-    </nav>
+      <nav class="mobile-drawer" id="mobileDrawer">
+        <a href="#idee">Die Idee</a>
+        <a href="#umfrage">Zielgruppenumfrage</a>
+        <a href="#team">Das Team</a>
+      </nav>
+    </div>
   </header>
 
   <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-content">
+          <h1>YOUR TRIP<br>YOUR STORY</h1>
+          <p class="tagline">Revolutioniere die Art, wie du Videos erstellst – ohne Vorkenntnisse, ohne aufwendigen Schnitt.</p>
+          
+          <div class="hero-buttons">
+            <a href="#testuser" class="btn">Test User Werden</a>
+            <a href="#idee" class="btn outline">Mehr erfahren</a>
+          </div>
+          
+          <div class="app-preview">
+            <img src="mobile.png" alt="Memoryfy App - Deine Erinnerungen als perfekte Videos" class="phone-mockup">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Die Idee Section -->
     <section id="idee" class="content-section">
       <div class="container">
-        <h2>Die Idee</h2>
-        <p>Memoryfy revolutioniert die Art, wie du Videos erstellst – ohne Vorkenntnisse, ohne aufwendigen Schnitt und ohne stundenlanges Sichten deiner Aufnahmen. Die App führt dich und deine Freunde mit intelligenten "Quests" gezielt durch den Aufnahmeprozess und erstellt automatisch hochwertige Videos aus eurem Material.</p>
+        <div class="section-header">
+          <h2>Die Idee</h2>
+          <p class="subtitle">Memoryfy macht Videoproduktion so einfach wie nie zuvor</p>
+        </div>
         
-        <p>Dank KI-gestützter Analyse deiner gesammelten Clips kannst du auch personalisierte Rückblicke und Jahresvideos aus all deinen Erinnerungen erstellen lassen.</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">🎥</div>
+            <h4>Intelligente Quests</h4>
+            <p>Die App führt dich und deine Freunde mit intelligenten „Quests" gezielt durch den Aufnahmeprozess und erstellt automatisch hochwertige Videos aus eurem Material.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h4>KI-gestützte Analyse</h4>
+            <p>Dank KI-gestützter Analyse deiner gesammelten Clips kannst du personalisierte Rückblicke und Jahresvideos aus all deinen Erinnerungen erstellen lassen.</p>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h4>Keine Vorkenntnisse</h4>
+            <p>Ohne Vorkenntnisse, ohne aufwendigen Schnitt und ohne stundenlanges Sichten deiner Aufnahmen – einfach perfekte Videos erstellen.</p>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="testuser" class="content-section" style="background-color: #2a3145;">
+    <!-- Test User Section -->
+    <section id="testuser" class="content-section">
       <div class="container">
-        <h2>Test User Werden</h2>
-        <p>Als Testuser erlebst du als einer der Ersten, wie einfach Videoproduktion wirklich sein kann – und hilfst dabei mit, eine App zu perfektionieren, die deine Art Videos zu erstellen für immer verändern wird. Du bekommst kostenlosen Zugang zu allen Premium-Features und gestaltest aktiv mit, wie die Zukunft des Video-Storytellings aussieht.</p>
+        <div class="section-header">
+          <h2>Test User Werden</h2>
+          <p class="subtitle">Sei einer der Ersten und gestalte die Zukunft des Video-Storytellings mit</p>
+        </div>
         
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn" style="margin-top: 1rem; background-color: #00bfff; border-color: #00bfff;">Jetzt als Test User registrieren</a>
+        <div class="content-grid">
+          <div class="content-text">
+            <h3>Exklusiver Zugang</h3>
+            <p>Als Testuser erlebst du als einer der Ersten, wie einfach Videoproduktion wirklich sein kann – und hilfst dabei mit, eine App zu perfektionieren, die deine Art Videos zu erstellen für immer verändern wird.</p>
+            
+            <p>Du bekommst kostenlosen Zugang zu allen Premium-Features und gestaltest aktiv mit, wie die Zukunft des Video-Storytellings aussieht.</p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn">Jetzt als Test User registrieren</a>
+          </div>
+          
+          <div class="feature-card">
+            <div class="feature-icon">🚀</div>
+            <h4>Deine Vorteile</h4>
+            <div style="text-align: left; margin-top: 1rem;">
+              <p>✓ Kostenloser Zugang zu allen Features</p>
+              <p>✓ Direkter Draht zum Entwicklerteam</p>
+              <p>✓ Mitgestaltung der App-Features</p>
+              <p>✓ Exklusiver Early Access</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- Umfrage Section -->
     <section id="umfrage" class="content-section">
       <div class="container">
-        <h2>Zielgruppenumfrage</h2>
-        <p>Hilf uns zu verstehen, was du dir von einer Video-App wünschst – deine Antworten fließen direkt in die Entwicklung von Memoryfy ein und sorgen dafür, dass die App genau das macht, was du brauchst.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSe55c-12QhIQsatxGU1ZpTN__vPQ_xsRdbxD5r6uBF6SecB-Q/viewform?usp=dialog" class="btn outline" style="margin-top: 1rem; color: #00bfff; border-color: #00bfff;">Zur Umfrage (dauert nur 3 Min.)</a>
+        <div class="section-header">
+          <h2>Zielgruppenumfrage</h2>
+          <p class="subtitle">Deine Meinung zählt – hilf uns, die perfekte Video-App zu entwickeln</p>
+        </div>
+        
+        <div class="content-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h4>Dein Feedback zählt</h4>
+            <p>Hilf uns zu verstehen, was du dir von einer Video-App wünschst. Deine Antworten fließen direkt in die Entwicklung von Memoryfy ein.</p>
+            
+            <div style="text-align: left; margin-top: 1rem;">
+              <p>✓ Nur 3 Minuten deiner Zeit</p>
+              <p>✓ Direkter Einfluss auf die App</p>
+              <p>✓ Anonyme Teilnahme</p>
+            </div>
+          </div>
+          
+          <div class="content-text">
+            <h3>Gemeinsam entwickeln</h3>
+            <p>Jede Stimme hilft uns dabei, eine App zu erschaffen, die genau das macht, was du brauchst. Von der Benutzerführung bis zu den Features – dein Input formt Memoryfy.</p>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe55c-12QhIQsatxGU1ZpTN__vPQ_xsRdbxD5r6uBF6SecB-Q/viewform?usp=dialog" class="btn outline">Zur Umfrage (dauert nur 3 Min.)</a>
+          </div>
+        </div>
       </div>
     </section>
-    <section id="team" class="content-section" style="background-color: #2a3145;">
+
+    <!-- Team Section -->
+    <section id="team" class="content-section">
       <div class="container">
-        <h2>Das Team</h2>
+        <div class="section-header">
+          <h2>Das Team</h2>
+          <p class="subtitle">Drei Freunde mit einer Vision: Videos für alle zugänglich machen</p>
+        </div>
         
-        <!-- Team-Mitglieder -->
         <div class="team-container">
-          <!-- Team-Mitglied 1 -->
-          <div class="team-member">
-            <div class="team-member-image">
-              <div>👤</div>
-            </div>
+          <!-- Team Member mit Gesamtfoto -->
+          <div class="team-member" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
+            <img src="us.jpg" alt="Memoryfy Team - Constantin, Sören und Tim" class="team-photo" style="width: 100%; height: 300px; object-fit: cover;">
             <div class="team-member-info">
-              <div class="team-member-name">Constantin Krause</div>
-              <div class="team-member-role">Creative Development</div>
-              <a href="https://www.linkedin.com/in/constantin-krause/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
-            </div>
-          </div>
-          
-          <!-- Team-Mitglied 2 -->
-          <div class="team-member">
-            <div class="team-member-image">
-              <div>👤</div>
-            </div>
-            <div class="team-member-info">
-              <div class="team-member-name">Sören Dierkes</div>
-              <div class="team-member-role">Product Development</div>
-              <a href="https://www.linkedin.com/in/s%C3%B6ren-dierkes-9140212a8/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
-            </div>
-          </div>
-          
-          <!-- Team-Mitglied 3 -->
-          <div class="team-member">
-            <div class="team-member-image">
-              <div>👤</div>
-            </div>
-            <div class="team-member-info">
-              <div class="team-member-name">Tim Wilhelm</div>
-              <div class="team-member-role">Business Development</div>
-              <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank" rel="noopener">LinkedIn Profil</a>
+              <div class="team-member-name" style="font-size: 1.5rem; margin-bottom: 1rem;">Constantin, Sören & Tim</div>
+              <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Drei Freunde, die gemeinsam daran arbeiten, Videoproduktion für jeden zugänglich zu machen. Von Creative Development über Product Development bis Business Development – wir bringen alle nötigen Skills mit, um Memoryfy Realität werden zu lassen.</p>
+              
+              <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/constantin-krause/" class="team-member-linkedin" target="_blank" rel="noopener">Constantin LinkedIn</a>
+                <a href="https://www.linkedin.com/in/sören-dierkes-9140212a8/" class="team-member-linkedin" target="_blank" rel="noopener">Sören LinkedIn</a>
+                <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank" rel="noopener">Tim LinkedIn</a>
+              </div>
             </div>
           </div>
         </div>
@@ -427,7 +696,7 @@
     </section>
   </main>
 
-  <!-- Footer mit rechtlichem Hinweis -->
+  <!-- Footer -->
   <footer>
     <div class="legal-notice">
       <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt irgendwann ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
@@ -444,7 +713,7 @@
       if (isExpanded) {
         menuToggle.innerHTML = '&times;';
       } else {
-        menuToggle.innerHTML = '&#9776;';
+        menuToggle.innerHTML = '☰';
       }
     });
 
@@ -454,7 +723,7 @@
         if (mobileDrawer.classList.contains('active')) {
           mobileDrawer.classList.remove('active');
           menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.innerHTML = '&#9776;';
+          menuToggle.innerHTML = '☰';
         }
       });
     });
