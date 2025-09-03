@@ -9,284 +9,8 @@
         content="Wissen von Memoryfy: Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen bewahren, Fotos digitalisieren und Video-Storytelling." />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-    <style>
-        :root {
-            --primary-purple: #6366f1;
-            --primary-dark: #4f46e5;
-            --purple-light: #a5b4fc;
-            --background-dark: #0f172a;
-            --background-card: #1e293b;
-            --background-section: #334155;
-            --text-primary: #ffffff;
-            --text-secondary: #cbd5e1;
-            --text-muted: #94a3b8;
-            --accent-blue: #3b82f6;
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background-dark);
-            color: var(--text-primary);
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
-
-        /* Header (wie Startseite) */
-        header {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            background: rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 1rem 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            gap: 3rem;
-            position: relative;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-weight: 700;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: translateY(-1px);
-        }
-
-        .desktop-nav {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .desktop-nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .desktop-nav a.btn {
-            color: #ffffff !important;
-        }
-
-        .desktop-nav a:not(.btn):hover {
-            color: var(--text-primary);
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .btn {
-            background: var(--gradient-primary);
-            color: #ffffff !important;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            color: #ffffff !important;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn.outline {
-            background: transparent;
-            border: 2px solid var(--primary-purple);
-            color: var(--primary-purple);
-            box-shadow: none;
-        }
-
-        .btn.outline:hover {
-            background: var(--primary-purple);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-        }
-
-        .btn-desktop-highlight {
-            background: var(--gradient-primary);
-            color: #ffffff !important;
-        }
-
-        .btn-mobile-highlight {
-            display: none;
-            background: var(--gradient-primary);
-            color: #ffffff !important;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.9rem;
-            position: absolute;
-            right: 4rem;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            position: absolute;
-            right: 1.5rem;
-        }
-
-        .menu-toggle:hover {
-            background: rgba(99, 102, 241, 0.1);
-        }
-
-        .mobile-drawer {
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(30, 41, 59, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            z-index: 999;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-        }
-
-        .mobile-drawer.active {
-            display: flex;
-        }
-
-        .mobile-drawer a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin: 0.5rem 0;
-            padding: 0.75rem 1rem;
-            width: 80%;
-            text-align: center;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .mobile-drawer a:hover {
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--text-primary);
-        }
-
-        .breadcrumb {
-            font-size: .95rem;
-            color: #cbd5e1;
-            margin: 1rem 0;
-        }
-
-        .breadcrumb a {
-            color: #a5b4fc;
-            text-decoration: none;
-        }
-
-        h1 {
-            font-size: 2.25rem;
-            margin: 0.5rem 0 0.25rem;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .subtitle {
-            color: #cbd5e1;
-            margin-bottom: 2rem;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.25rem;
-        }
-
-        .card {
-            background: #1e293b;
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            border-radius: 14px;
-            padding: 1.25rem;
-            transition: transform .2s ease, box-shadow .2s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 24px rgba(99, 102, 241, .12);
-        }
-
-        .card h2 {
-            font-size: 1.15rem;
-            margin: .25rem 0 .5rem;
-            color: #ffffff;
-        }
-
-        .meta {
-            color: #94a3b8;
-            font-size: .9rem;
-            margin-bottom: .75rem;
-        }
-
-        .card p {
-            color: #cbd5e1;
-            margin: 0 0 1rem;
-        }
-
-        .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: #fff;
-            text-decoration: none;
-            padding: .6rem 1rem;
-            border-radius: 10px;
-            font-weight: 500;
-        }
-
-        footer {
-            text-align: center;
-            color: #94a3b8;
-            padding: 2rem 0;
-            border-top: 1px solid rgba(99, 102, 241, 0.1);
-            margin-top: 3rem;
-        }
-
-        nav a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-right: 1rem;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/wissen.css">
     <link rel="canonical" href="/wissen/" />
     <meta name="robots" content="index,follow" />
     <script type="application/ld+json">
@@ -309,32 +33,36 @@
 <body>
     <header>
         <div class="header-content">
-            <a href="../index.html" class="logo">
-                <img src="../logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
+            <a href="/" class="logo">
+                <img src="/assets/logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
             </a>
+
             <nav class="desktop-nav">
-                <a href="../index.html#idee">Die Idee</a>
-                <a href="../index.html#team">Das Team</a>
-                <a href="./">Wissen</a>
+                <a href="/#idee">Die Idee</a>
+                <a href="/#team">Das Team</a>
+                <a href="/wissen/">Wissen</a>
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
                     class="btn btn-desktop-highlight" target="_blank" rel="noopener">Test User werden</a>
             </nav>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen"
-                aria-expanded="false">☰</button>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+                class="btn btn-mobile-highlight" target="_blank" rel="noopener">Test User werden</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+                ☰
+            </button>
+
             <nav class="mobile-drawer" id="mobileDrawer">
-                <a href="../index.html#idee">Die Idee</a>
-                <a href="../index.html#team">Das Team</a>
-                <a href="./">Wissen</a>
+                <a href="/#idee">Die Idee</a>
+                <a href="/#team">Das Team</a>
+                <a href="/wissen/">Wissen</a>
             </nav>
         </div>
     </header>
 
-    <main class="container">
-        <div class="breadcrumb">
-            <a href="/">Startseite</a> › Wissen
-        </div>
-        <h1>Wissen</h1>
-        <p class="subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen, Fotos und Video-Storytelling.</p>
+    <main class="container wissen-container">
+        <h1 class="wissen-h1">Wissen</h1>
+        <p class="subtitle wissen-subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen, Fotos und
+            Video-Storytelling.</p>
 
         <section class="grid">
             <article class="card">
@@ -345,34 +73,37 @@
                     praktischer Checkliste.</p>
                 <a class="btn" href="/wissen/fotos-digitalisieren-leitfaden.html">Jetzt lesen</a>
             </article>
+
+            <article class="card">
+                <div class="meta">Anleitung · ca. 5 Min. Lesezeit</div>
+                <h2><a href="/wissen/golden-hour-fotografie-tipps.html">Goldene Stunde: Tipps für magische Fotos</a>
+                </h2>
+                <p>Lerne, wie du das warme, weiche Licht kurz nach Sonnenaufgang und vor Sonnenuntergang für
+                    atemberaubende Porträts und Landschaften nutzt.</p>
+                <a class="btn" href="/wissen/golden-hour-fotografie-tipps.html">Jetzt lesen</a>
+            </article>
+
+            <article class="card">
+                <div class="meta">Ratgeber · ca. 6 Min. Lesezeit</div>
+                <h2><a href="/wissen/storytelling-urlaubsvideo-tipps.html">Storytelling für Urlaubsvideos: So
+                        geht's!</a>
+                </h2>
+                <p>Erstelle fesselnde Video-Geschichten aus deinem Urlaubsmaterial mit einfachen Tipps für Anfang,
+                    Mittelteil und Ende.</p>
+                <a class="btn" href="/wissen/storytelling-urlaubsvideo-tipps.html">Jetzt lesen</a>
+            </article>
         </section>
     </main>
 
     <footer>
-        <div class="container">© Memoryfy</div>
+        <div class="legal-notice">
+            <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt
+                irgendwann
+                ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
+        </div>
     </footer>
 
-    <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        if (menuToggle && mobileDrawer) {
-            menuToggle.addEventListener('click', function () {
-                const isExpanded = mobileDrawer.classList.toggle('active');
-                menuToggle.setAttribute('aria-expanded', String(isExpanded));
-                if (isExpanded) { menuToggle.innerHTML = '&times;'; } else { menuToggle.innerHTML = '☰'; }
-            });
-            const drawerLinks = mobileDrawer.querySelectorAll('a');
-            drawerLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileDrawer.classList.contains('active')) {
-                        mobileDrawer.classList.remove('active');
-                        menuToggle.setAttribute('aria-expanded', 'false');
-                        menuToggle.innerHTML = '☰';
-                    }
-                });
-            });
-        }
-    </script>
+    <script src="/js/main.js"></script>
 </body>
 
 </html>
