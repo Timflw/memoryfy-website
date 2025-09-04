@@ -22,9 +22,7 @@
 .article-h1 {
     font-size: 2.25rem;
     margin: .25rem 0 .25rem;
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #ffffff;
 }
 
 .meta {
@@ -42,6 +40,7 @@
     margin: 0.5rem 0 0.25rem;
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -94,6 +93,13 @@
     font-size: 1.15rem;
     margin: .25rem 0 .5rem;
     color: #ffffff;
+}
+
+.card h2 a,
+.card h2 a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    pointer-events: none;
 }
 
 .card .meta {

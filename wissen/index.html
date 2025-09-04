@@ -64,34 +64,8 @@
         <p class="subtitle wissen-subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen, Fotos und
             Video-Storytelling.</p>
 
-        <section class="grid">
-            <article class="card">
-                <div class="meta">Leitfaden · ca. 7 Min. Lesezeit</div>
-                <h2><a href="/wissen/fotos-digitalisieren-leitfaden.html">Fotos digitalisieren: Der komplette
-                        Leitfaden</a></h2>
-                <p>Alles, was du wissen musst: Vorbereitung, Scan-Optionen, Dateiformate, Aufbewahrung – inklusive
-                    praktischer Checkliste.</p>
-                <a class="btn" href="/wissen/fotos-digitalisieren-leitfaden.html">Jetzt lesen</a>
-            </article>
-
-            <article class="card">
-                <div class="meta">Anleitung · ca. 5 Min. Lesezeit</div>
-                <h2><a href="/wissen/golden-hour-fotografie-tipps.html">Goldene Stunde: Tipps für magische Fotos</a>
-                </h2>
-                <p>Lerne, wie du das warme, weiche Licht kurz nach Sonnenaufgang und vor Sonnenuntergang für
-                    atemberaubende Porträts und Landschaften nutzt.</p>
-                <a class="btn" href="/wissen/golden-hour-fotografie-tipps.html">Jetzt lesen</a>
-            </article>
-
-            <article class="card">
-                <div class="meta">Ratgeber · ca. 6 Min. Lesezeit</div>
-                <h2><a href="/wissen/storytelling-urlaubsvideo-tipps.html">Storytelling für Urlaubsvideos: So
-                        geht's!</a>
-                </h2>
-                <p>Erstelle fesselnde Video-Geschichten aus deinem Urlaubsmaterial mit einfachen Tipps für Anfang,
-                    Mittelteil und Ende.</p>
-                <a class="btn" href="/wissen/storytelling-urlaubsvideo-tipps.html">Jetzt lesen</a>
-            </article>
+        <section id="all-articles" class="grid">
+            <!-- Artikel werden hier per JavaScript geladen -->
         </section>
     </main>
 
@@ -104,6 +78,12 @@
     </footer>
 
     <script src="/js/main.js"></script>
+    <script src="/js/article-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles('all-articles');
+        });
+    </script>
 </body>
 
 </html>

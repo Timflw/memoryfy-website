@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/wissen.css">
   <link rel="canonical" href="/" />
   <meta name="robots" content="index,follow" />
   <script type="application/ld+json">
@@ -154,22 +155,22 @@
         <div class="team-container">
           <!-- Team Member mit Gesamtfoto -->
           <div class="team-member" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
-            <img src="/assets/us.jpg" alt="Memoryfy Team - Constantin, Sören und Tim" class="team-photo"
+            <img src="/assets/us.jpg" alt="Memoryfy Team - Tim, Constantin und Sören" class="team-photo"
               style="width: 100%; height: auto; object-fit: contain; max-height: 400px;">
             <div class="team-member-info">
-              <div class="team-member-name" style="font-size: 1.5rem; margin-bottom: 1rem;">Constantin, Sören & Tim
+              <div class="team-member-name" style="font-size: 1.5rem; margin-bottom: 1rem;">Tim, Constantin & Sören
               </div>
               <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Drei Freunde, die
                 gemeinsam daran arbeiten, aus deinen Urlaubserinnerungen schöne Videos zu machen. Einfach, automatisch
                 und ohne dass du dich mit komplizierter Technik beschäftigen musst.</p>
 
               <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank"
+                  rel="noopener">Tim LinkedIn</a>
                 <a href="https://www.linkedin.com/in/constantin-krause/" class="team-member-linkedin" target="_blank"
                   rel="noopener">Constantin LinkedIn</a>
                 <a href="https://www.linkedin.com/in/sören-dierkes-9140212a8/" class="team-member-linkedin"
                   target="_blank" rel="noopener">Sören LinkedIn</a>
-                <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank"
-                  rel="noopener">Tim LinkedIn</a>
               </div>
             </div>
           </div>
@@ -184,34 +185,11 @@
           <h2>Wissen</h2>
           <p class="subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen und Videos</p>
         </div>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📚</div>
-            <h4>Fotos digitalisieren: Der komplette Leitfaden</h4>
-            <p>Vorbereitung, Scan‑Optionen, Dateiformate und langfristige Aufbewahrung – kompakt erklärt.</p>
-            <div style="margin-top: 1rem;">
-              <a href="/wissen/fotos-digitalisieren-leitfaden.html" class="btn">Jetzt lesen</a>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🌇</div>
-            <h4>Goldene Stunde: Tipps für magische Fotos</h4>
-            <p>Nutze das warme, weiche Licht für atemberaubende Porträts und Landschaften.</p>
-            <div style="margin-top: 1rem;">
-              <a href="/wissen/golden-hour-fotografie-tipps.html" class="btn">Jetzt lesen</a>
-            </div>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon">🎬</div>
-            <h4>Storytelling für Urlaubsvideos</h4>
-            <p>Erstelle fesselnde Video-Geschichten mit einfachen Tipps für Anfang, Mittelteil und Ende.</p>
-            <div style="margin-top: 1rem;">
-              <a href="/wissen/storytelling-urlaubsvideo-tipps.html" class="btn">Jetzt lesen</a>
-            </div>
-          </div>
+        <div id="latest-articles" class="grid">
+          <!-- Artikel werden hier per JavaScript geladen -->
         </div>
         <div style="text-align: center; margin-top: 3rem;">
-          <a href="/wissen/index.html" class="btn outline">Alle Beiträge ansehen</a>
+          <a href="/wissen/" class="btn outline">Alle Beiträge ansehen</a>
         </div>
       </div>
     </section>
@@ -226,6 +204,12 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script src="/js/article-loader.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadArticles('latest-articles', 3);
+    });
+  </script>
 </body>
 
 </html>

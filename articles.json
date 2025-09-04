@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Storytelling für Urlaubsvideos: So geht's!",
+        "description": "Erfahre, wie du mit einfachen Storytelling-Techniken aus deinem Urlaubsmaterial fesselnde Video-Geschichten erstellst. Tipps für Anfang, Mittelteil und Ende.",
+        "date": "2025-01-10",
+        "image": "/assets/logo.png",
+        "link": "/wissen/storytelling-urlaubsvideo-tipps.html",
+        "category": "Ratgeber"
+    },
+    {
+        "title": "Goldene Stunde nutzen: Tipps für magische Fotos",
+        "description": "Lerne, wie du die Goldene Stunde für atemberaubende Fotos mit warmem, weichem Licht nutzt. Unser Leitfaden gibt dir praktische Tipps zu Timing, Kameraeinstellungen und Bildkomposition.",
+        "date": "2025-01-05",
+        "image": "/assets/logo.png",
+        "link": "/wissen/golden-hour-fotografie-tipps.html",
+        "category": "Anleitung"
+    },
+    {
+        "title": "Fotos digitalisieren: Der komplette Leitfaden (2025)",
+        "description": "Der umfassende Leitfaden zum Digitalisieren von Fotos: Vorbereitung, Scan-Optionen, Auflösung, Dateiformate, Ordnerstruktur und langfristige Aufbewahrung.",
+        "date": "2025-01-01",
+        "image": "/assets/logo.png",
+        "link": "/wissen/fotos-digitalisieren-leitfaden.html",
+        "category": "Leitfaden"
+    }
+]
