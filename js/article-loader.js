@@ -6,7 +6,7 @@ async function loadArticles(containerId, limit = 0) {
   }
 
   try {
-    const response = await fetch('/articles.json');
+    const response = await fetch(`${window.base_path || ''}articles.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -34,8 +34,8 @@ async function loadArticles(containerId, limit = 0) {
 
       articlesHtml += `
         <article class="card">
-          <a href="${article.url}" class="card-image-link">
-            <img src="${article.image}" alt="${article.title}" loading="lazy">
+          <a href="${window.base_path || ''}${article.url}" class="card-image-link">
+            <img src="${window.base_path || ''}${article.image}" alt="${article.title}" loading="lazy">
           </a>
           <div class="card-content">
             <div class="meta">
@@ -44,7 +44,7 @@ async function loadArticles(containerId, limit = 0) {
             </div>
             <h2>${article.title}</h2>
             <p>${article.description}</p>
-            <a class="btn" href="${article.url}">Jetzt lesen</a>
+            <a class="btn" href="${window.base_path || ''}${article.url}">Jetzt lesen</a>
           </div>
         </article>
       `;
