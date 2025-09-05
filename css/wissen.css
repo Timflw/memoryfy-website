@@ -30,6 +30,19 @@
     margin-bottom: 1rem;
 }
 
+.article-container section a {
+    color: #a5b4fc;
+    text-decoration: underline;
+}
+
+.article-container section a:hover {
+    text-decoration: none;
+}
+
+.article-container section p {
+    margin-bottom: 1rem;
+}
+
 .article-h2 {
     margin-top: 2rem;
     font-size: 1.4rem;
@@ -70,18 +83,98 @@
     text-decoration: none;
 }
 
+.toc ol {
+    padding-left: 20px;
+    /* Adjust this value as needed */
+    margin-top: 0.75rem;
+}
+
+.toc li {
+    margin-bottom: 0.5rem;
+}
+
+/* New styles for floating images within articles */
+.img-float-left {
+    float: left;
+    max-width: 33%;
+    height: auto;
+    margin-right: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    /* Optional: adds nice rounded corners */
+}
+
+.img-float-right {
+    float: right;
+    max-width: 33%;
+    height: auto;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    /* Optional: adds nice rounded corners */
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1.25rem;
+    justify-content: center;
+    /* Zentriert die Items in der Mitte */
+}
+
+@media (min-width: 640px) {
+    .grid {
+        justify-content: flex-start;
+        /* Linksbündig auf größeren Bildschirmen */
+    }
+
+    .card {
+        margin: 0;
+        /* Auf größeren Bildschirmen kein Auto-Margin */
+    }
 }
 
 .card {
     background: #1e293b;
     border: 1px solid rgba(99, 102, 241, 0.15);
     border-radius: 14px;
-    padding: 1.25rem;
+    padding: 0;
+    /* Changed from 1.25rem to 0 */
     transition: transform .2s ease, box-shadow .2s ease;
+    display: flex;
+    /* Added for layout */
+    flex-direction: column;
+    /* Added for layout */
+    max-width: 350px;
+    /* Maximale Breite für die Karte */
+    margin: 0 auto;
+    /* Zentriert die einzelne Karte */
+}
+
+.card-image-link {
+    display: block;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 14px 14px 0 0;
+}
+
+.card-image-link img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .3s ease;
+}
+
+.card:hover .card-image-link img {
+    transform: scale(1.05);
+}
+
+.card-content {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    /* Ensures content area fills space */
 }
 
 .card:hover {
@@ -89,30 +182,29 @@
     box-shadow: 0 10px 24px rgba(99, 102, 241, .12);
 }
 
-.card h2 {
+.card-content h2 {
     font-size: 1.15rem;
     margin: .25rem 0 .5rem;
-    color: #ffffff;
+    color: #a5b4fc;
 }
 
-.card h2 a,
-.card h2 a:visited {
-    color: #ffffff;
-    text-decoration: none;
-    pointer-events: none;
-}
-
-.card .meta {
+.card-content .meta {
     font-size: .9rem;
     margin-bottom: .75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #94a3b8;
 }
 
-.card p {
+.card-content p {
     color: #cbd5e1;
     margin: 0 0 1rem;
+    flex-grow: 1;
+    /* Pushes the button to the bottom */
 }
 
-.card .btn {
+.card-content .btn {
     display: inline-block;
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: #fff !important;
@@ -120,4 +212,15 @@
     padding: .6rem 1rem;
     border-radius: 10px;
     font-weight: 500;
+}
+
+.article-h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    margin-left: 1.5rem;
+}
+
+.article-container section ul {
+    list-style: disc;
+    padding-left: 3rem;
 }
