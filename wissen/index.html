@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wissen – Leitfäden, Anleitungen und Ratgeber | Memoryfy</title>
+    <meta name="description"
+        content="Wissen von Memoryfy: Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen bewahren, Fotos digitalisieren und Video-Storytelling." />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/wissen.css">
+    <link rel="canonical" href="/wissen/" />
+    <meta name="robots" content="index,follow" />
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Wissen",
+    "description": "Leitfäden, Anleitungen und Ratgeber von Memoryfy.",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Startseite","item":"/"},
+        {"@type":"ListItem","position":2,"name":"Wissen","item":"/wissen/"}
+      ]
+    }
+  }
+  </script>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="/assets/logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
+            </a>
+
+            <nav class="desktop-nav">
+                <a href="/#idee">Die Idee</a>
+                <a href="/#team">Das Team</a>
+                <a href="/wissen/">Wissen</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+                    class="btn btn-desktop-highlight" target="_blank" rel="noopener">Test User werden</a>
+            </nav>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+                class="btn btn-mobile-highlight" target="_blank" rel="noopener">Test User werden</a>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="mobile-drawer" id="mobileDrawer">
+                <a href="/#idee">Die Idee</a>
+                <a href="/#team">Das Team</a>
+                <a href="/wissen/">Wissen</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container wissen-container">
+        <h1 class="wissen-h1">Wissen</h1>
+        <p class="subtitle wissen-subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen, Fotos und
+            Video-Storytelling.</p>
+
+        <section id="all-articles" class="grid">
+            <!-- Artikel werden hier per JavaScript geladen -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="legal-notice">
+            <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt
+                irgendwann
+                ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/article-loader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadArticles('all-articles');
+        });
+    </script>
+</body>
+
+</html>

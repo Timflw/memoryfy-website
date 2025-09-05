@@ -1,579 +1,55 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Erfahren Sie mehr über unsere Idee, werden Sie Test-User, nehmen Sie an unserer Zielgruppenumfrage teil oder machen Sie Namensvorschläge." />
-  <title>Memoryfy - YOUR TRIP YOUR STORY</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  <meta name="description"
+    content="Memoryfy erstellt aus deinen Reise-Clips automatisch emotionale Videos. Ganz ohne Schnitt und Vorkenntnisse. Werde jetzt Test-User und erzähle deine Geschichte." />
+  <title>Memoryfy: Automatische Urlaubsvideos aus deinen Aufnahmen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/wissen.css">
+  <link rel="canonical" href="/" />
+  <meta name="robots" content="index,follow" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Memoryfy",
+      "url": "/",
+      "logo": "/logo.png",
+      "description": "Memoryfy erstellt aus deinen Reise-Clips automatisch emotionale Videos. Ganz ohne Schnitt und Vorkenntnisse."
     }
-
-    :root {
-      --primary-purple: #6366f1;
-      --primary-dark: #4f46e5;
-      --purple-light: #a5b4fc;
-      --background-dark: #0f172a;
-      --background-card: #1e293b;
-      --background-section: #334155;
-      --text-primary: #ffffff;
-      --text-secondary: #cbd5e1;
-      --text-muted: #94a3b8;
-      --accent-blue: #3b82f6;
-      --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-      --gradient-secondary: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--background-dark);
-      color: var(--text-primary);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* Header */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem 1.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      gap: 3rem;
-      position: relative;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .logo:hover {
-      transform: translateY(-1px);
-    }
-
-    .desktop-nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-    }
-
-    .desktop-nav a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .desktop-nav a.btn {
-      color: #ffffff !important;
-    }
-
-    .desktop-nav a:not(.btn):hover {
-      color: var(--text-primary);
-      background: rgba(99, 102, 241, 0.1);
-    }
-
-    .btn {
-      background: var(--gradient-primary);
-      color: #ffffff !important;
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .btn:hover {
-      color: #ffffff !important;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn.outline {
-      background: transparent;
-      border: 2px solid var(--primary-purple);
-      color: var(--primary-purple);
-      box-shadow: none;
-    }
-
-    .btn.outline:hover {
-      background: var(--primary-purple);
-      color: white;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-    }
-
-    .btn-desktop-highlight {
-      background: var(--gradient-primary);
-      color: #ffffff !important;
-    }
-
-    .btn-mobile-highlight {
-      display: none;
-      background: var(--gradient-primary);
-      color: #ffffff !important;
-      padding: 0.6rem 1.2rem;
-      font-size: 0.9rem;
-      position: absolute;
-      right: 4rem;
-    }
-
-    .menu-toggle {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      position: absolute;
-      right: 1.5rem;
-    }
-
-    .menu-toggle:hover {
-      background: rgba(99, 102, 241, 0.1);
-    }
-
-    .mobile-drawer {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
-      background: rgba(30, 41, 59, 0.95);
-      backdrop-filter: blur(10px);
-      padding: 1rem 0;
-      z-index: 999;
-      border-bottom: 1px solid rgba(99, 102, 241, 0.2);
-    }
-
-    .mobile-drawer.active {
-      display: flex;
-    }
-
-    .mobile-drawer a {
-      color: var(--text-secondary);
-      text-decoration: none;
-      margin: 0.5rem 0;
-      padding: 0.75rem 1rem;
-      width: 80%;
-      text-align: center;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-    }
-
-    .mobile-drawer a:hover {
-      background: rgba(99, 102, 241, 0.1);
-      color: var(--text-primary);
-    }
-
-    /* Hero Section */
-    .hero {
-      padding: 8rem 0 6rem 0;
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="gradient" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="%236366f1" stop-opacity="0.1"/><stop offset="100%" stop-color="%236366f1" stop-opacity="0"/></radialGradient></defs><circle cx="50" cy="50" r="50" fill="url(%23gradient)"/></svg>') center/cover;
-      opacity: 0.5;
-    }
-
-    .hero-content {
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      background: var(--gradient-primary);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.2;
-    }
-
-    .hero .tagline {
-      font-size: 1.25rem;
-      color: var(--text-secondary);
-      margin-bottom: 2rem;
-      font-weight: 500;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      margin-top: 3rem;
-    }
-
-    .app-preview {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .phone-mockup {
-      width: 300px;
-      height: auto;
-      filter: drop-shadow(0 20px 40px rgba(99, 102, 241, 0.3));
-      transform: perspective(1000px) rotateY(-15deg);
-      transition: all 0.3s ease;
-    }
-
-    .phone-mockup:hover {
-      transform: perspective(1000px) rotateY(0deg) translateY(-10px);
-    }
-
-    /* Content Sections */
-    .content-section {
-      padding: 6rem 0;
-      position: relative;
-    }
-
-    .content-section:nth-child(even) {
-      background: var(--background-card);
-    }
-
-    .section-header {
-      text-align: center;
-    }
-
-    .section-header h2 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .section-header .subtitle {
-      font-size: 1.2rem;
-      color: var(--text-secondary);
-      margin: 0 auto 1rem;
-    }
-
-    .content-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .content-text h3 {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .content-text p {
-      font-size: 1.1rem;
-      line-height: 1.7;
-      color: var(--text-secondary);
-      margin-bottom: 1.5rem;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .feature-card {
-      background: var(--background-card);
-      padding: 2rem;
-      border-radius: 16px;
-      border: 1px solid rgba(99, 102, 241, 0.1);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .feature-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--gradient-primary);
-    }
-
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
-    }
-
-    .feature-icon {
-      width: 60px;
-      height: 60px;
-      background: var(--gradient-primary);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .feature-card h4 {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 1rem;
-      color: var(--text-primary);
-    }
-
-    .feature-card p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-
-    /* Team Section */
-    .team-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-top: 1rem;
-    }
-
-    .team-member {
-      background: var(--background-card);
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(99, 102, 241, 0.1);
-      transition: all 0.3s ease;
-    }
-
-    .team-member:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(99, 102, 241, 0.1);
-    }
-
-    .team-photo {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 16px 16px 0 0;
-    }
-
-    .team-member-image {
-      width: 100%;
-      height: 250px;
-      background: var(--gradient-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-    }
-
-    .team-member-info {
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .team-member-name {
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--text-primary);
-    }
-
-    .team-member-role {
-      color: var(--primary-purple);
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
-      font-weight: 500;
-    }
-
-    .team-member-linkedin {
-      display: inline-block;
-      background: var(--gradient-primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      margin: 0.25rem;
-    }
-
-    .team-member-linkedin:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
-    }
-
-    /* Footer */
-    footer {
-      background: var(--background-dark);
-      padding: 3rem 0;
-      text-align: center;
-      border-top: 1px solid rgba(99, 102, 241, 0.1);
-    }
-
-    .legal-notice {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header-content {
-        justify-content: flex-start;
-        gap: 0;
-      }
-      
-      .logo {
-        z-index: 10;
-      }
-      
-      .desktop-nav {
-        display: none;
-      }
-
-      .btn-mobile-highlight {
-        display: inline-block;
-        margin-left: auto;
-        margin-right: 1rem;
-        position: static;
-        right: auto;
-      }
-
-      .menu-toggle {
-        display: block;
-        position: static;
-        right: auto;
-      }
-
-      .hero {
-        padding: 6rem 0 4rem 0;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .hero .tagline {
-        font-size: 1.1rem;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .phone-mockup {
-        width: 250px;
-        transform: none;
-      }
-
-      .content-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-
-      .section-header h2 {
-        font-size: 2rem;
-      }
-
-      .content-section {
-        padding: 4rem 0;
-      }
-
-      .features-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .team-container {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  </script>
 </head>
+
 <body>
   <header>
     <div class="header-content">
-      <a href="#" class="logo">
-        <img src="logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
+      <a href="/" class="logo">
+        <img src="/assets/logo.png" alt="Memoryfy Logo" style="height: 40px; width: auto;">
       </a>
 
       <nav class="desktop-nav">
-        <a href="#idee">Die Idee</a>
-        <a href="#umfrage">Zielgruppenumfrage</a>
-        <a href="#team">Das Team</a>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn btn-desktop-highlight" target="_blank" rel="noopener">Test User werden</a>
+        <a href="/#idee">Die Idee</a>
+        <a href="/#team">Das Team</a>
+        <a href="/wissen/">Wissen</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+          class="btn btn-desktop-highlight" target="_blank" rel="noopener">Test User werden</a>
       </nav>
 
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn btn-mobile-highlight" target="_blank" rel="noopener">Test User werden</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+        class="btn btn-mobile-highlight" target="_blank" rel="noopener">Test User werden</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Menü öffnen/schließen" aria-expanded="false">
         ☰
       </button>
 
       <nav class="mobile-drawer" id="mobileDrawer">
-        <a href="#idee">Die Idee</a>
-        <a href="#umfrage">Zielgruppenumfrage</a>
-        <a href="#team">Das Team</a>
+        <a href="/#idee">Die Idee</a>
+        <a href="/#team">Das Team</a>
+        <a href="/wissen/">Wissen</a>
       </nav>
     </div>
   </header>
@@ -584,14 +60,17 @@
       <div class="container">
         <div class="hero-content">
           <h1>YOUR TRIP<br>YOUR STORY</h1>
-          <p class="tagline">Revolutioniere die Art, wie du Videos erstellst – ohne Vorkenntnisse, ohne aufwendigen Schnitt.</p>
-          
+          <p class="tagline">Revolutioniere die Art, wie du Videos erstellst – ohne Vorkenntnisse, ohne aufwendigen
+            Schnitt.</p>
+
           <div class="app-preview">
-            <img src="mobile.png" alt="Memoryfy App - Deine Erinnerungen als perfekte Videos" class="phone-mockup">
+            <img src="/assets/mobile.png" alt="Memoryfy App - Deine Erinnerungen als perfekte Videos"
+              class="phone-mockup">
           </div>
-          
+
           <div class="hero-buttons">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn" target="_blank" rel="noopener">Test User werden</a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+              class="btn" target="_blank" rel="noopener">Test User werden</a>
             <a href="#idee" class="btn outline">Mehr erfahren</a>
           </div>
         </div>
@@ -603,26 +82,29 @@
       <div class="container">
         <div class="section-header">
           <h2>Die Idee</h2>
-          <p class="subtitle">Memoryfy macht Videoproduktion so einfach wie nie zuvor</p>
+          <p class="subtitle">Memoryfy macht Videoproduktion so einfach wie nie zuvor.</p>
         </div>
-        
+
         <div class="features-grid">
           <div class="feature-card">
             <div class="feature-icon">🎥</div>
-            <h4>Intelligente Quests</h4>
-            <p>Die App führt dich und deine Freunde mit intelligenten „Quests" gezielt durch den Aufnahmeprozess und erstellt automatisch hochwertige Videos aus eurem Material.</p>
+            <h4>Geführtes Filmen</h4>
+            <p>Die App hilft dir, Erlebnisse mithilfe geführter Filmaufgaben und eines automatischen Schnitts in
+              hochwertige Erinnerungsvideos zu verwandeln.</p>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">👥</div>
-            <h4>Privat für deine Freunde</h4>
-            <p>Teile deine Videos in einem geschlossenen Kreis nur mit Familie und Freunden. Keine öffentlichen Posts, keine Fremden – nur die Menschen, die dir wichtig sind.</p>
+            <h4>Gemeinsames Projekt</h4>
+            <p>Mit Memoryfy bleibt der Wunsch eines Urlaubsvideos nicht an einer Person hängen, sondern wird zum
+              gemeinsamen Projekt.</p>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">✨</div>
             <h4>Keine Vorkenntnisse</h4>
-            <p>Ohne Vorkenntnisse, ohne aufwendigen Schnitt und ohne stundenlanges Sichten deiner Aufnahmen – einfach perfekte Videos erstellen.</p>
+            <p>Ohne Vorkenntnisse, ohne aufwendigen Schnitt und ohne stundenlanges Sichten deiner Aufnahmen – einfach
+              perfekte Videos erstellen.</p>
           </div>
         </div>
       </div>
@@ -633,58 +115,31 @@
       <div class="container">
         <div class="section-header">
           <h2>Test User werden</h2>
-          <p class="subtitle">Sei einer der Ersten und gestalte die Zukunft des Video-Storytellings mit</p>
+          <p class="subtitle">Sei einer der Ersten und gestalte die Zukunft des Video-Storytellings mit.</p>
         </div>
-        
+
         <div class="content-grid">
           <div class="content-text">
             <h3>Exklusiver Zugang</h3>
-            <p>Als Testuser erlebst du als einer der Ersten, wie einfach Videoproduktion wirklich sein kann – und hilfst dabei mit, eine App zu perfektionieren, die deine Art Videos zu erstellen für immer verändern wird.</p>
-            
-            <p>Du bekommst kostenlosen Zugang zu allen Premium-Features und gestaltest aktiv mit, wie die Zukunft des Video-Storytellings aussieht.</p>
-            
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog" class="btn">Jetzt als Test User registrieren</a>
+            <p>Als Testuser erlebst du als einer der Ersten, wie einfach Videoproduktion wirklich sein kann – und hilfst
+              dabei mit, eine App zu perfektionieren, die deine Art Videos zu erstellen für immer verändern wird.</p>
+
+            <p>Du bekommst kostenlosen Zugang und gestaltest aktiv mit, wie die Zukunft des
+              Video-Storytellings aussieht.</p>
+
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSd62N56OLB_yjdOXDqS30gx0xvlBPD0tQGc50UM7Fr5aPoSgw/viewform?usp=dialog"
+              class="btn">Jetzt als Test User registrieren</a>
           </div>
-          
+
           <div class="feature-card">
             <div class="feature-icon">🚀</div>
             <h4>Deine Vorteile</h4>
             <div style="text-align: left; margin-top: 1rem;">
-              <p>✓ Kostenloser Zugang zu allen Features</p>
-              <p>✓ Direkter Draht zum Entwicklerteam</p>
               <p>✓ Exklusiver Early Access</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+              <p>✓ Kostenloser Zugang zu allen Features</p>
+              <p>✓ Mitgestaltung der Zukunft des Video-Storytellings</p>
 
-    <!-- Umfrage Section -->
-    <section id="umfrage" class="content-section">
-      <div class="container">
-        <div class="section-header">
-          <h2>Zielgruppenumfrage</h2>
-          <p class="subtitle">Deine Meinung zählt – hilf uns, die perfekte Video-App zu entwickeln</p>
-        </div>
-        
-        <div class="content-grid">
-          <div class="feature-card">
-            <div class="feature-icon">📊</div>
-            <h4>Dein Feedback zählt</h4>
-            <p>Hilf uns zu verstehen, was du dir von einer Video-App wünschst. Deine Antworten fließen direkt in die Entwicklung von Memoryfy ein.</p>
-            
-            <div style="text-align: left; margin-top: 1rem;">
-              <p>✓ Nur 3 Minuten deiner Zeit</p>
-              <p>✓ Direkter Einfluss auf die App</p>
-              <p>✓ Anonyme Teilnahme</p>
             </div>
-          </div>
-          
-          <div class="content-text">
-            <h3>Gemeinsam entwickeln</h3>
-            <p>Jede Stimme hilft uns dabei, eine App zu erschaffen, die genau das macht, was du brauchst. Von der Benutzerführung bis zu den Features – dein Input formt Memoryfy.</p>
-            
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe55c-12QhIQsatxGU1ZpTN__vPQ_xsRdbxD5r6uBF6SecB-Q/viewform?usp=dialog" class="btn outline">Zur Umfrage (dauert nur 3 Min.)</a>
           </div>
         </div>
       </div>
@@ -695,24 +150,46 @@
       <div class="container">
         <div class="section-header">
           <h2>Das Team</h2>
-          <p class="subtitle">Drei Freunde mit einer Vision: Videos für alle zugänglich machen</p>
+          <p class="subtitle">Drei Freunde mit einer Vision: Hochwertige Videos für alle zugänglich machen</p>
         </div>
-        
+
         <div class="team-container">
           <!-- Team Member mit Gesamtfoto -->
           <div class="team-member" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
-            <img src="us.jpg" alt="Memoryfy Team - Constantin, Sören und Tim" class="team-photo" style="width: 100%; height: auto; object-fit: contain; max-height: 400px;">
+            <img src="/assets/us.jpg" alt="Memoryfy Team - Tim, Constantin und Sören" class="team-photo"
+              style="width: 100%; height: auto; object-fit: contain; max-height: 400px;">
             <div class="team-member-info">
-              <div class="team-member-name" style="font-size: 1.5rem; margin-bottom: 1rem;">Constantin, Sören & Tim</div>
-              <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Drei Freunde, die gemeinsam daran arbeiten, aus deinen Urlaubserinnerungen schöne Videos zu machen. Einfach, automatisch und ohne dass du dich mit komplizierter Technik beschäftigen musst.</p>
-              
+              <div class="team-member-name" style="font-size: 1.5rem; margin-bottom: 1rem;">Tim, Constantin & Sören
+              </div>
+              <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 1.1rem;">Wir wollen, dass in
+                fünf Jahren jeder bei Erinnerungen an Memoryfy denkt.</p>
+
               <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                <a href="https://www.linkedin.com/in/constantin-krause/" class="team-member-linkedin" target="_blank" rel="noopener">Constantin LinkedIn</a>
-                <a href="https://www.linkedin.com/in/sören-dierkes-9140212a8/" class="team-member-linkedin" target="_blank" rel="noopener">Sören LinkedIn</a>
-                <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank" rel="noopener">Tim LinkedIn</a>
+                <a href="https://www.linkedin.com/in/tfl-wilhelm/" class="team-member-linkedin" target="_blank"
+                  rel="noopener">Tim LinkedIn</a>
+                <a href="https://www.linkedin.com/in/constantin-krause/" class="team-member-linkedin" target="_blank"
+                  rel="noopener">Constantin LinkedIn</a>
+                <a href="https://www.linkedin.com/in/sören-dierkes-9140212a8/" class="team-member-linkedin"
+                  target="_blank" rel="noopener">Sören LinkedIn</a>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wissen Teaser Section -->
+    <section id="wissen-teaser" class="content-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Wissen</h2>
+          <p class="subtitle">Leitfäden, Anleitungen und Ratgeber rund um Erinnerungen und Videos</p>
+        </div>
+        <div id="latest-articles" class="grid">
+          <!-- Artikel werden hier per JavaScript geladen -->
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+          <a href="/wissen/" class="btn outline">Alle Beiträge ansehen</a>
         </div>
       </div>
     </section>
@@ -721,34 +198,18 @@
   <!-- Footer -->
   <footer>
     <div class="legal-notice">
-      <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt irgendwann ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
+      <p>Memoryfy ist kein Unternehmen. Wir sind in der Vorgründungsphase und hoffen, dass aus dem Projekt irgendwann
+        ein Unternehmen werden kann. Diese Webseite dient dazu, Feedback zu unserer Idee einzuholen.</p>
     </div>
   </footer>
 
+  <script src="/js/main.js"></script>
+  <script src="/js/article-loader.js"></script>
   <script>
-    const menuToggle = document.getElementById('menuToggle');
-    const mobileDrawer = document.getElementById('mobileDrawer');
-
-    menuToggle.addEventListener('click', function() {
-      const isExpanded = mobileDrawer.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', String(isExpanded));
-      if (isExpanded) {
-        menuToggle.innerHTML = '&times;';
-      } else {
-        menuToggle.innerHTML = '☰';
-      }
-    });
-
-    const drawerLinks = mobileDrawer.querySelectorAll('a');
-    drawerLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        if (mobileDrawer.classList.contains('active')) {
-          mobileDrawer.classList.remove('active');
-          menuToggle.setAttribute('aria-expanded', 'false');
-          menuToggle.innerHTML = '☰';
-        }
-      });
+    document.addEventListener('DOMContentLoaded', () => {
+      loadArticles('latest-articles', 3);
     });
   </script>
 </body>
+
 </html>
