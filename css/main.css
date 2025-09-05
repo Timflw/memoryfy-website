@@ -31,7 +31,14 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     padding-top: 65px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     /* Platz für den fixierten Header */
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 .container {
