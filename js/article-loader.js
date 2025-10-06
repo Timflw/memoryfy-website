@@ -11,6 +11,8 @@ async function loadArticles(containerId, limit = 0) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     let articles = await response.json();
+    // filter out unpublished articles (published === false)
+    articles = articles.filter(a => a.published !== false);
 
     if (limit > 0) {
       articles = articles.slice(0, limit);
