@@ -133,56 +133,173 @@
             </style>
 
             <div class="table-container" style="overflow-x: auto; margin: 2rem 0;">
-                <table id="apps-table" style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
+                <table id="apps-table" style="width: 100%; border-collapse: collapse; font-size: 0.8rem;" role="table"
+                    aria-label="Vergleichstabelle der besten Apps für Urlaubsvideos">
                     <thead>
                         <tr style="background-color: #f8fafc; border-bottom: 2px solid #e2e8f0;">
                             <th class="sortable" data-type="string"
-                                style="padding: 12px; text-align: left; font-weight: 600; color: #374151;"
+                                style="padding: 8px; text-align: left; font-weight: 600; color: #374151; min-width: 100px;"
                                 aria-sort="none">App <span class="sort-indicator" aria-hidden="true">↕</span></th>
                             <th class="sortable" data-type="number"
-                                style="padding: 12px; text-align: center; font-weight: 600; color: #374151;"
-                                aria-sort="none">Playstore
-                                Bewertung <span class="sort-indicator" aria-hidden="true">↕</span></th>
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 80px;"
+                                aria-sort="none">Play Store ⭐ <span class="sort-indicator" aria-hidden="true">↕</span>
+                            </th>
                             <th class="sortable" data-type="number"
-                                style="padding: 12px; text-align: center; font-weight: 600; color: #374151;"
-                                aria-sort="none">Anzahl
-                                Bewertungen <span class="sort-indicator" aria-hidden="true">↕</span></th>
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 100px;"
+                                aria-sort="none"># Bewertungen <span class="sort-indicator" aria-hidden="true">↕</span>
+                            </th>
                             <th class="sortable" data-type="number"
-                                style="padding: 12px; text-align: center; font-weight: 600; color: #374151;"
-                                aria-sort="none">Anzahl
-                                Downloads <span class="sort-indicator" aria-hidden="true">↕</span></th>
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 100px;"
+                                aria-sort="none"># Downloads <span class="sort-indicator" aria-hidden="true">↕</span>
+                            </th>
+                            <th class="sortable" data-type="number"
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 80px;"
+                                aria-sort="none">Apple Store ⭐ <span class="sort-indicator" aria-hidden="true">↕</span>
+                            </th>
+                            <th class="sortable" data-type="number"
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 100px;"
+                                aria-sort="none"># Bewertungen (Apple) <span class="sort-indicator"
+                                    aria-hidden="true">↕</span></th>
+                            <th class="sortable" data-type="price"
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 80px;"
+                                aria-sort="none">monatliche Kosten <span class="sort-indicator"
+                                    aria-hidden="true">↕</span></th>
+                            <th class="sortable" data-type="price"
+                                style="padding: 8px; text-align: center; font-weight: 600; color: #374151; min-width: 80px;"
+                                aria-sort="none">jährliche Kosten <span class="sort-indicator"
+                                    aria-hidden="true">↕</span></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 12px; font-weight: 500;">InShot</td>
-                            <td style="padding: 12px; text-align: center;">4,8</td>
-                            <td style="padding: 12px; text-align: center;">23.000.000</td>
-                            <td style="padding: 12px; text-align: center;">500.000.000</td>
+                            <td style="padding: 8px; font-weight: 500;" scope="row">InShot</td>
+                            <td style="padding: 8px; text-align: center;">4,8</td>
+                            <td style="padding: 8px; text-align: center;">23 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">500 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,9</td>
+                            <td style="padding: 8px; text-align: center;">2,3 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,59 €</td>
+                            <td style="padding: 8px; text-align: center;">16,99 €</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 12px; font-weight: 500;">CapCut</td>
-                            <td style="padding: 12px; text-align: center;">3,8</td>
-                            <td style="padding: 12px; text-align: center;">12.000.000</td>
-                            <td style="padding: 12px; text-align: center;">1.000.000.000</td>
+                            <td style="padding: 8px; font-weight: 500;" scope="row">CapCut</td>
+                            <td style="padding: 8px; text-align: center;">3,8</td>
+                            <td style="padding: 8px; text-align: center;">12 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">1.000 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,8</td>
+                            <td style="padding: 8px; text-align: center;">17.000</td>
+                            <td style="padding: 8px; text-align: center;">14,99 €</td>
+                            <td style="padding: 8px; text-align: center;">139,99 €</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 12px; font-weight: 500;">GoPro Quik</td>
-                            <td style="padding: 12px; text-align: center;">4,0</td>
-                            <td style="padding: 12px; text-align: center;">1.000.000</td>
-                            <td style="padding: 12px; text-align: center;">10.000.000</td>
+                            <td style="padding: 8px; font-weight: 500;" scope="row">iMovie</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">4,3</td>
+                            <td style="padding: 8px; text-align: center;">241.000</td>
+                            <td style="padding: 8px; text-align: center;">kostenlos</td>
+                            <td style="padding: 8px; text-align: center;">kostenlos</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #e2e8f0;">
-                            <td style="padding: 12px; font-weight: 500;">DJI Mimo</td>
-                            <td style="padding: 12px; text-align: center;">2,1</td>
-                            <td style="padding: 12px; text-align: center;">1.000</td>
-                            <td style="padding: 12px; text-align: center;">500.000</td>
+                            <td style="padding: 8px; font-weight: 500;" scope="row">GoPro Quik</td>
+                            <td style="padding: 8px; text-align: center;">4,0</td>
+                            <td style="padding: 8px; text-align: center;">1 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">10 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">3,9</td>
+                            <td style="padding: 8px; text-align: center;">1.000</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">10,00 €</td>
                         </tr>
-                        <tr>
-                            <td style="padding: 12px; font-weight: 500;">PowerDirector</td>
-                            <td style="padding: 12px; text-align: center;">4,3</td>
-                            <td style="padding: 12px; text-align: center;">1.700.000</td>
-                            <td style="padding: 12px; text-align: center;">100.000.000</td>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">DJI Mimo</td>
+                            <td style="padding: 8px; text-align: center;">2,1</td>
+                            <td style="padding: 8px; text-align: center;">1.000</td>
+                            <td style="padding: 8px; text-align: center;">500.000</td>
+                            <td style="padding: 8px; text-align: center;">4,3</td>
+                            <td style="padding: 8px; text-align: center;">10.000</td>
+                            <td style="padding: 8px; text-align: center;">kostenlos</td>
+                            <td style="padding: 8px; text-align: center;">kostenlos</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">PowerDirector</td>
+                            <td style="padding: 8px; text-align: center;">4,3</td>
+                            <td style="padding: 8px; text-align: center;">1,7 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">100 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,6</td>
+                            <td style="padding: 8px; text-align: center;">28.000</td>
+                            <td style="padding: 8px; text-align: center;">8,49 €</td>
+                            <td style="padding: 8px; text-align: center;">30,99 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">Vids AI</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">nicht verfügbar</td>
+                            <td style="padding: 8px; text-align: center;">4,8</td>
+                            <td style="padding: 8px; text-align: center;">31.000</td>
+                            <td style="padding: 8px; text-align: center;">8,90 €</td>
+                            <td style="padding: 8px; text-align: center;">44,90 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">Filmr</td>
+                            <td style="padding: 8px; text-align: center;">3,2</td>
+                            <td style="padding: 8px; text-align: center;">8.000</td>
+                            <td style="padding: 8px; text-align: center;">1 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,5</td>
+                            <td style="padding: 8px; text-align: center;">720</td>
+                            <td style="padding: 8px; text-align: center;">2,60 €</td>
+                            <td style="padding: 8px; text-align: center;">12,99 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">Splice</td>
+                            <td style="padding: 8px; text-align: center;">3,7</td>
+                            <td style="padding: 8px; text-align: center;">137.000</td>
+                            <td style="padding: 8px; text-align: center;">5 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,6</td>
+                            <td style="padding: 8px; text-align: center;">411.000</td>
+                            <td style="padding: 8px; text-align: center;">4,99 €</td>
+                            <td style="padding: 8px; text-align: center;">79,99 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">VivaVideo</td>
+                            <td style="padding: 8px; text-align: center;">4,3</td>
+                            <td style="padding: 8px; text-align: center;">12 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">500 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,8</td>
+                            <td style="padding: 8px; text-align: center;">280.000</td>
+                            <td style="padding: 8px; text-align: center;">7,49 €</td>
+                            <td style="padding: 8px; text-align: center;">39,99 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">Filmora</td>
+                            <td style="padding: 8px; text-align: center;">3,6</td>
+                            <td style="padding: 8px; text-align: center;">1 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">100 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,7</td>
+                            <td style="padding: 8px; text-align: center;">83.500</td>
+                            <td style="padding: 8px; text-align: center;">7,99 €</td>
+                            <td style="padding: 8px; text-align: center;">36,99 €</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">LightCut</td>
+                            <td style="padding: 8px; text-align: center;">4,6</td>
+                            <td style="padding: 8px; text-align: center;">58.000</td>
+                            <td style="padding: 8px; text-align: center;">1 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,9</td>
+                            <td style="padding: 8px; text-align: center;">17.000</td>
+                            <td style="padding: 8px; text-align: center;">Kostenlos</td>
+                            <td style="padding: 8px; text-align: center;">Kostenlos</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #e2e8f0;">
+                            <td style="padding: 8px; font-weight: 500;" scope="row">Videoleap</td>
+                            <td style="padding: 8px; text-align: center;">4,2</td>
+                            <td style="padding: 8px; text-align: center;">197.000</td>
+                            <td style="padding: 8px; text-align: center;">10 Mio.</td>
+                            <td style="padding: 8px; text-align: center;">4,6</td>
+                            <td style="padding: 8px; text-align: center;">140.700</td>
+                            <td style="padding: 8px; text-align: center;">8,99 €</td>
+                            <td style="padding: 8px; text-align: center;">39,99 €</td>
                         </tr>
                     </tbody>
                 </table>
@@ -198,13 +315,48 @@
                         if (value == null) return NaN;
                         const text = String(value).trim().toLowerCase();
                         if (!text) return NaN;
-                        let normalized = text.replace(/\./g, '').replace(/,/g, '.');
+
                         let multiplier = 1;
-                        if (normalized.endsWith('k')) { multiplier = 1e3; normalized = normalized.slice(0, -1); }
-                        if (normalized.endsWith('m')) { multiplier = 1e6; normalized = normalized.slice(0, -1); }
-                        if (normalized.endsWith('b')) { multiplier = 1e9; normalized = normalized.slice(0, -1); }
+                        let normalized = text;
+
+                        // Check for "mio." first before removing dots
+                        if (normalized.endsWith('mio.')) {
+                            multiplier = 1e6;
+                            normalized = normalized.slice(0, -4);
+                        } else if (normalized.endsWith('k')) {
+                            multiplier = 1e3;
+                            normalized = normalized.slice(0, -1);
+                        } else if (normalized.endsWith('m')) {
+                            multiplier = 1e6;
+                            normalized = normalized.slice(0, -1);
+                        } else if (normalized.endsWith('b')) {
+                            multiplier = 1e9;
+                            normalized = normalized.slice(0, -1);
+                        }
+
+                        // Now handle German number format: remove thousand separators, convert comma to decimal point
+                        normalized = normalized.replace(/\./g, '').replace(/,/g, '.');
+
                         const n = parseFloat(normalized);
                         return isNaN(n) ? NaN : n * multiplier;
+                    };
+
+                    const parsePrice = (value) => {
+                        if (value == null) return NaN;
+                        const text = String(value).trim().toLowerCase();
+                        if (!text) return NaN;
+
+                        // Handle special cases
+                        if (text === 'kostenlos' || text === 'nicht verfügbar') return 0;
+
+                        // Remove Euro symbol and any other non-numeric characters except comma and period
+                        let normalized = text.replace(/[^\d,.-]/g, '');
+
+                        // Handle German number format: 1.000.000,50 -> 1000000.50
+                        normalized = normalized.replace(/\./g, '').replace(/,/g, '.');
+
+                        const n = parseFloat(normalized);
+                        return isNaN(n) ? NaN : n;
                     };
                     const directions = new Map();
                     function setAriaSort(activeIndex, dir) {
@@ -225,11 +377,24 @@
                         rows.sort((a, b) => {
                             const aText = a.children[index].textContent || '';
                             const bText = b.children[index].textContent || '';
+
+                            // Handle "nicht verfügbar" - always place at bottom
+                            const aIsUnavailable = aText.toLowerCase().includes('nicht verfügbar') || aText === '-';
+                            const bIsUnavailable = bText.toLowerCase().includes('nicht verfügbar') || bText === '-';
+
+                            if (aIsUnavailable && !bIsUnavailable) return 1;  // a goes to bottom
+                            if (!aIsUnavailable && bIsUnavailable) return -1; // b goes to bottom
+                            if (aIsUnavailable && bIsUnavailable) return 0;   // both unavailable, maintain order
+
                             let cmp = 0;
                             if (type === 'number') {
                                 const aNum = parseGermanNumber(aText);
                                 const bNum = parseGermanNumber(bText);
                                 cmp = (aNum - bNum);
+                            } else if (type === 'price') {
+                                const aPrice = parsePrice(aText);
+                                const bPrice = parsePrice(bText);
+                                cmp = (aPrice - bPrice);
                             } else {
                                 cmp = aText.localeCompare(bText, 'de', { sensitivity: 'base' });
                             }
