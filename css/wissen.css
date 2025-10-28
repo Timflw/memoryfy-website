@@ -225,6 +225,16 @@
     padding-left: 3rem;
 }
 
+/* Responsive table styling */
+#apps-table {
+    font-size: 0.9rem;
+}
+
+#apps-table td,
+#apps-table th {
+    font-size: 0.9rem;
+}
+
 /* Media elements in articles */
 .article-media {
     margin: 1.25rem 0;
@@ -242,4 +252,77 @@
     font-size: .95rem;
     color: #94a3b8;
     margin-top: .5rem;
+}
+
+/* Responsive font sizing for articles */
+@media (max-width: 768px) {
+    .article-h1 {
+        font-size: 1.75rem;
+    }
+
+    .article-h2 {
+        font-size: 1.2rem;
+    }
+
+    .article-h3 {
+        font-size: 1.1rem;
+    }
+
+    .article-container section p {
+        font-size: 0.95rem;
+    }
+
+    .breadcrumb {
+        font-size: 0.85rem;
+    }
+
+    .meta {
+        font-size: 0.9rem;
+    }
+
+    #apps-table {
+        font-size: 0.8rem;
+    }
+
+    #apps-table td,
+    #apps-table th {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .article-h1 {
+        font-size: 1.5rem;
+    }
+
+    .article-h2 {
+        font-size: 1.1rem;
+    }
+
+    .article-h3 {
+        font-size: 1rem;
+    }
+
+    .article-container section p {
+        font-size: 0.9rem;
+    }
+
+    .article-container section ul {
+        padding-left: 1.5rem;
+    }
+
+    #apps-table {
+        font-size: 0.75rem;
+    }
+
+    #apps-table td,
+    #apps-table th {
+        font-size: 0.75rem;
+        padding: 6px;
+    }
+
+    #apps-table th {
+        min-width: 70px;
+    }
 }
