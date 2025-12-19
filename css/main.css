@@ -495,6 +495,27 @@ footer {
     line-height: 1.6;
 }
 
+.funding-logo {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(99, 102, 241, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.funding-logo img {
+    max-width: 33vw;
+    width: 33vw;
+    height: auto;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.funding-logo img:hover {
+    opacity: 1;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-content {
@@ -565,5 +586,10 @@ footer {
 
     .team-container {
         grid-template-columns: 1fr;
+    }
+
+    .funding-logo img {
+        max-width: 50vw;
+        width: 50vw;
     }
 }
