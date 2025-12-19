@@ -505,9 +505,9 @@ footer {
 }
 
 .funding-logo img {
-    max-width: 33vw;
-    width: 33vw;
+    max-width: 100%;
     height: auto;
+    max-height: 240px;
     opacity: 0.8;
     transition: opacity 0.3s ease;
 }
@@ -589,7 +589,6 @@ footer {
     }
 
     .funding-logo img {
-        max-width: 50vw;
-        width: 50vw;
+        max-height: 180px;
     }
 }
