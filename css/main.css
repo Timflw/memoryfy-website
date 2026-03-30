@@ -791,6 +791,31 @@ footer {
     text-decoration: underline;
 }
 
+.privacy-hint {
+    margin: 0 auto 1.25rem auto;
+    max-width: 900px;
+    padding: 0.9rem 1rem;
+    border: 1px solid rgba(99, 102, 241, 0.18);
+    border-radius: 12px;
+    background: rgba(30, 41, 59, 0.55);
+    color: var(--text-secondary);
+    text-align: left;
+}
+
+.privacy-hint strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.privacy-hint a {
+    color: var(--text-primary);
+    text-decoration: underline;
+}
+
+.privacy-hint a:hover {
+    color: #ffffff;
+}
+
 .funding-logo {
     margin-top: 2rem;
     padding-top: 2rem;
