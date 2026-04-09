@@ -51,31 +51,45 @@
   <div class="card">
     <img src="/assets/logo.png" alt="Memoryfy" class="logo">
     <h1>Passwort zurücksetzen</h1>
-    <p id="message">Klicke auf den Button, um dein neues Passwort festzulegen.</p>
+    <p id="message">Du wirst weitergeleitet...</p>
     <p class="error" id="error">Ungültiger oder fehlender Link. Bitte fordere in der App einen neuen Link an.</p>
-    <button class="btn" id="resetBtn" onclick="verify()">Neues Passwort festlegen</button>
-    <p class="note">Dieser Link kann nur einmal verwendet werden.</p>
+    <button class="btn" id="resetBtn" style="display: none;" onclick="verify()">Neues Passwort festlegen</button>
+    <p class="note" id="note" style="display: none;">Klicke auf den Button, falls die Weiterleitung nicht funktioniert.</p>
   </div>
   <script>
-    function verify() {
+    function getVerifyUrl() {
       var params = new URLSearchParams(window.location.search);
       var token = params.get('token');
       var type = params.get('type');
       var redirect = params.get('redirect_to');
 
-      if (!token || !type) {
-        document.getElementById('error').style.display = 'block';
-        document.getElementById('message').style.display = 'none';
-        document.getElementById('resetBtn').style.display = 'none';
-        return;
-      }
+      if (!token || !type) return null;
 
-      var url = 'https://smqzjezxbtsylzwmmgzu.supabase.co/auth/v1/verify'
+      return 'https://smqzjezxbtsylzwmmgzu.supabase.co/auth/v1/verify'
         + '?token=' + encodeURIComponent(token)
         + '&type=' + encodeURIComponent(type)
         + '&redirect_to=' + encodeURIComponent(redirect || 'com.memoryfy.app://reset-callback/');
+    }
 
+    function verify() {
+      var url = getVerifyUrl();
+      if (url) window.location.href = url;
+    }
+
+    // Auto-redirect immediately — link scanners don't execute JS,
+    // so the token is only consumed when a real user opens the page.
+    var url = getVerifyUrl();
+    if (url) {
       window.location.href = url;
+      // Show fallback button after 3 seconds in case redirect fails
+      setTimeout(function() {
+        document.getElementById('message').textContent = 'Falls die App nicht geöffnet wurde:';
+        document.getElementById('resetBtn').style.display = 'inline-block';
+        document.getElementById('note').style.display = 'block';
+      }, 3000);
+    } else {
+      document.getElementById('error').style.display = 'block';
+      document.getElementById('message').style.display = 'none';
     }
   </script>
 </body>
