@@ -540,15 +540,15 @@ header {
     outline-offset: 3px;
 }
 
-@media (hover: hover) and (pointer: fine) and (min-width: 769px) {
+@media (hover: hover) and (pointer: fine) {
     .store-button-wrap--apple:hover .store-qr,
     .store-button-wrap--apple:focus-within .store-qr {
         opacity: 1;
         transform: translateY(0);
     }
 
-    .store-button-wrap--play:hover .store-soon,
-    .store-button-wrap--play:focus-within .store-soon {
+    .store-button-wrap--play:hover .store-qr,
+    .store-button-wrap--play:focus-within .store-qr {
         opacity: 1;
         transform: translateY(0);
     }
