@@ -65,7 +65,14 @@
     </div>
   </div>
   <script>
-    var FUNCTION_URL = 'https://smqzjezxbtsylzwmmgzu.supabase.co/functions/v1/newsletter-unsubscribe';
+    var ALLOWED_REFS = ['smqzjezxbtsylzwmmgzu', 'kbasaeuafhkhgkvpxzrf'];
+    var DEFAULT_REF = 'smqzjezxbtsylzwmmgzu';
+    var params = new URLSearchParams(window.location.search);
+    var requestedRef = params.get('proj');
+    var projectRef = (requestedRef && ALLOWED_REFS.indexOf(requestedRef) !== -1)
+      ? requestedRef
+      : DEFAULT_REF;
+    var FUNCTION_URL = 'https://' + projectRef + '.supabase.co/functions/v1/newsletter-unsubscribe';
 
     function show(id) {
       ['loading', 'success', 'error-invalid', 'error-network']
