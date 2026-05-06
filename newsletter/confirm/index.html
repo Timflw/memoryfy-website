@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://smqzjezxbtsylzwmmgzu.supabase.co; base-uri 'none'; frame-ancestors 'none'; form-action 'none';">
   <title>Memoryfy – Newsletter bestätigen</title>
   <link rel="icon" href="/assets/memoryfy_favicon.png" type="image/png">
   <style>
@@ -69,14 +71,7 @@
     </div>
   </div>
   <script>
-    var ALLOWED_REFS = ['smqzjezxbtsylzwmmgzu', 'kbasaeuafhkhgkvpxzrf'];
-    var DEFAULT_REF = 'smqzjezxbtsylzwmmgzu';
-    var params = new URLSearchParams(window.location.search);
-    var requestedRef = params.get('proj');
-    var projectRef = (requestedRef && ALLOWED_REFS.indexOf(requestedRef) !== -1)
-      ? requestedRef
-      : DEFAULT_REF;
-    var FUNCTION_URL = 'https://' + projectRef + '.supabase.co/functions/v1/newsletter-confirm';
+    var FUNCTION_URL = 'https://smqzjezxbtsylzwmmgzu.supabase.co/functions/v1/newsletter-confirm';
 
     function show(id) {
       ['loading', 'success', 'error-expired', 'error-invalid', 'error-network']
@@ -85,6 +80,9 @@
     }
 
     var token = new URLSearchParams(window.location.search).get('token');
+    if (token) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
     if (!token) {
       show('error-invalid');
     } else {

@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
   <meta name="referrer" content="no-referrer">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://smqzjezxbtsylzwmmgzu.supabase.co; base-uri 'none'; frame-ancestors 'none'; form-action 'none';">
-  <title>Memoryfy – Newsletter abmelden</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://kbasaeuafhkhgkvpxzrf.supabase.co; base-uri 'none'; frame-ancestors 'none'; form-action 'none';">
+  <title>Memoryfy – Newsletter bestätigen</title>
   <link rel="icon" href="/assets/memoryfy_favicon.png" type="image/png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,15 +51,19 @@
     <img src="/assets/logo.png" alt="Memoryfy" class="logo">
     <div id="loading">
       <div class="spinner"></div>
-      <p>Abmeldung wird verarbeitet&hellip;</p>
+      <p>Anmeldung wird bestätigt&hellip;</p>
     </div>
     <div id="success" class="hidden">
-      <h1 class="success">Abgemeldet</h1>
-      <p>Du wurdest erfolgreich vom Newsletter abgemeldet.</p>
+      <h1 class="success">Vielen Dank!</h1>
+      <p>Du erhältst künftig Updates zu neuen Features.</p>
+    </div>
+    <div id="error-expired" class="hidden">
+      <h1 class="error">Link abgelaufen</h1>
+      <p>Dieser Bestätigungslink ist abgelaufen. Bitte fordere in der App eine neue Anmeldung an.</p>
     </div>
     <div id="error-invalid" class="hidden">
       <h1 class="error">Ungültiger Link</h1>
-      <p>Dieser Abmeldelink ist nicht gültig.</p>
+      <p>Dieser Bestätigungslink ist nicht gültig.</p>
     </div>
     <div id="error-network" class="hidden">
       <h1 class="error">Etwas ist schiefgelaufen</h1>
@@ -67,10 +71,10 @@
     </div>
   </div>
   <script>
-    var FUNCTION_URL = 'https://smqzjezxbtsylzwmmgzu.supabase.co/functions/v1/newsletter-unsubscribe';
+    var FUNCTION_URL = 'https://kbasaeuafhkhgkvpxzrf.supabase.co/functions/v1/newsletter-confirm';
 
     function show(id) {
-      ['loading', 'success', 'error-invalid', 'error-network']
+      ['loading', 'success', 'error-expired', 'error-invalid', 'error-network']
         .forEach(function (x) { document.getElementById(x).classList.add('hidden'); });
       document.getElementById(id).classList.remove('hidden');
     }
@@ -88,6 +92,7 @@
         body: JSON.stringify({ token: token })
       }).then(function (res) {
         if (res.ok) { show('success'); }
+        else if (res.status === 410) { show('error-expired'); }
         else if (res.status === 404) { show('error-invalid'); }
         else { show('error-network'); }
       }).catch(function () { show('error-network'); });
