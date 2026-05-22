@@ -16,7 +16,8 @@
     (function () {
       var img = new Image();
       img.src = 'https://memoryfy.goatcounter.com/count?p=/qr-sticker&rnd=' + Math.random();
-      var redirect = function () { window.location.replace('/'); };
+      var done = false;
+      var redirect = function () { if (done) return; done = true; window.location.replace('/'); };
       img.onload = img.onerror = redirect;
       setTimeout(redirect, 600);
     })();

@@ -554,6 +554,54 @@ header {
     }
 }
 
+.free-badge-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+    margin-top: 1rem;
+}
+
+.free-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin: 0;
+    padding: 0.5rem 0.9rem;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.12);
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: var(--text-primary);
+    font-size: 0.92rem;
+    line-height: 1.3;
+}
+
+.free-badge-note {
+    margin: 0;
+    padding-left: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.free-badge strong {
+    font-weight: 600;
+}
+
+.free-badge__check {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 999px;
+    background: #22c55e;
+    color: #ffffff;
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
 /* Content Sections */
 .content-section {
     padding: 6rem 0;
@@ -799,6 +847,32 @@ footer {
     text-decoration: underline;
 }
 
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    margin: 0 0 1.5rem 0;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--text-primary);
+    background: rgba(99, 102, 241, 0.12);
+    transform: translateY(-1px);
+    text-decoration: none;
+}
+
 .privacy-hint {
     margin: 0 auto 1.25rem auto;
     max-width: 900px;
@@ -883,15 +957,16 @@ footer {
         position: static;
         right: auto;
         flex: 0 0 auto;
+        margin-left: auto;
     }
 
     .hero {
-        padding: 6rem 0 4rem 0;
+        padding: 4.5rem 0 4rem 0;
     }
 
     .hero-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 0;
         text-align: center;
         min-height: 0;
         display: flex;
@@ -899,12 +974,15 @@ footer {
     }
 
     .hero-copy {
-        text-align: center;
+        display: contents;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.9rem;
         overflow-wrap: anywhere;
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+        order: 2;
     }
 
     /* Allow wrapping on small screens (prevents horizontal clipping) */
@@ -913,9 +991,12 @@ footer {
     }
 
     .hero .tagline {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         margin-left: auto;
         margin-right: auto;
+        order: 4;
+        margin-top: 1.25rem;
+        margin-bottom: 0;
     }
 
     .hero-cta {
@@ -923,7 +1004,7 @@ footer {
     }
 
     .phone-mockup {
-        width: min(520px, 100%);
+        width: min(320px, 80%);
         height: auto;
         max-height: none;
         transform: none;
@@ -931,15 +1012,57 @@ footer {
 
     .hero-visual {
         justify-content: center;
-        order: -1;
+        order: 1;
     }
 
     .store-buttons {
         justify-content: center;
+        order: 3;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+        width: 100%;
     }
 
     .store-button-wrap {
         align-items: center;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .store-button {
+        min-width: 0;
+        width: 100%;
+        padding: 0.65rem 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .store-button__meta {
+        font-size: 0.7rem;
+    }
+
+    .store-button__brand {
+        font-size: 1rem;
+    }
+
+    .free-badge-wrap {
+        align-self: center;
+        align-items: center;
+        order: 3;
+        margin-top: 0.9rem;
+        gap: 0.3rem;
+    }
+
+    .free-badge {
+        font-size: 0.85rem;
+        padding: 0.45rem 0.8rem;
+        text-align: center;
+    }
+
+    .free-badge-note {
+        padding-left: 0;
+        text-align: center;
+        font-size: 0.78rem;
     }
 
     .content-grid {
