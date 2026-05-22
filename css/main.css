@@ -883,10 +883,11 @@ footer {
         position: static;
         right: auto;
         flex: 0 0 auto;
+        margin-left: auto;
     }
 
     .hero {
-        padding: 6rem 0 4rem 0;
+        padding: 4.5rem 0 4rem 0;
     }
 
     .hero-content {
