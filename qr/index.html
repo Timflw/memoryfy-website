@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Memoryfy</title>
+  <meta name="robots" content="noindex">
+  <meta http-equiv="refresh" content="1; url=/">
+  <link rel="canonical" href="/">
+</head>
+<body>
+  <noscript>
+    <img src="https://memoryfy.goatcounter.com/count?p=/qr" alt="" style="position:absolute;left:-9999px">
+    <p>Weiterleitung zu <a href="/">memoryfy.app</a></p>
+  </noscript>
+  <script>
+    (function () {
+      var img = new Image();
+      img.src = 'https://memoryfy.goatcounter.com/count?p=/qr&rnd=' + Math.random();
+      var redirect = function () { window.location.replace('/'); };
+      img.onload = img.onerror = redirect;
+      setTimeout(redirect, 600);
+    })();
+  </script>
+</body>
+</html>
