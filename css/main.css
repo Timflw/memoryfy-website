@@ -891,7 +891,7 @@ footer {
 
     .hero-content {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 0;
         text-align: center;
         min-height: 0;
         display: flex;
@@ -900,11 +900,15 @@ footer {
 
     .hero-copy {
         text-align: center;
+        display: contents;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.9rem;
         overflow-wrap: anywhere;
+        margin-top: 1.5rem;
+        margin-bottom: 0;
+        order: 2;
     }
 
     /* Allow wrapping on small screens (prevents horizontal clipping) */
@@ -913,9 +917,12 @@ footer {
     }
 
     .hero .tagline {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         margin-left: auto;
         margin-right: auto;
+        order: 4;
+        margin-top: 1.25rem;
+        margin-bottom: 0;
     }
 
     .hero-cta {
@@ -923,7 +930,7 @@ footer {
     }
 
     .phone-mockup {
-        width: min(520px, 100%);
+        width: min(320px, 80%);
         height: auto;
         max-height: none;
         transform: none;
@@ -931,15 +938,37 @@ footer {
 
     .hero-visual {
         justify-content: center;
-        order: -1;
+        order: 1;
     }
 
     .store-buttons {
         justify-content: center;
+        order: 3;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        margin-top: 0.4rem;
+        width: 100%;
     }
 
     .store-button-wrap {
         align-items: center;
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    .store-button {
+        min-width: 0;
+        width: 100%;
+        padding: 0.65rem 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .store-button__meta {
+        font-size: 0.7rem;
+    }
+
+    .store-button__brand {
+        font-size: 1rem;
     }
 
     .content-grid {
