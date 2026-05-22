@@ -14,12 +14,13 @@
   </noscript>
   <script>
     (function () {
-      var img = new Image();
-      img.src = 'https://memoryfy.goatcounter.com/count?p=/qr-sticker&rnd=' + Math.random();
-      var done = false;
-      var redirect = function () { if (done) return; done = true; window.location.replace('/'); };
-      img.onload = img.onerror = redirect;
-      setTimeout(redirect, 600);
+      var url = 'https://memoryfy.goatcounter.com/count?p=/qr-sticker&rnd=' + Math.random();
+      try {
+        fetch(url, { method: 'GET', mode: 'no-cors', keepalive: true, credentials: 'omit' });
+      } catch (e) {
+        new Image().src = url;
+      }
+      window.location.replace('/');
     })();
   </script>
 </body>
