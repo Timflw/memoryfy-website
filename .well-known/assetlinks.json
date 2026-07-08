@@ -5,8 +5,8 @@
       "namespace": "android_app",
       "package_name": "de.cts.memoryfy",
       "sha256_cert_fingerprints": [
-        "REPLACE_WITH_PLAY_APP_SIGNING_SHA256_FINGERPRINT",
-        "REPLACE_WITH_UPLOAD_KEY_SHA256_FINGERPRINT"
+        "20:D0:6B:5E:4B:1F:70:44:3A:D1:9E:0C:7A:56:B2:29:F2:00:67:AB:51:56:41:D9:0F:36:31:11:D7:CB:A3:21",
+        "78:27:62:5D:C9:6F:F0:40:5E:38:0C:D4:72:14:1B:11:0B:84:2F:1D:B3:A1:12:FA:B3:90:48:E5:B9:CC:8C:20"
       ]
     }
   }
