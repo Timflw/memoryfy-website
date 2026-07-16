@@ -154,42 +154,171 @@
   </noscript>
 
   <script>
+    // =====================================================================
+    // Download switch + UTM attribution tracking (GoatCounter web ingest)
+    // ---------------------------------------------------------------------
+    // GoatCounter is cookieless and stores no personal data or IP addresses,
+    // so there is nothing to consent to: no cookies, no localStorage, no
+    // persistent identifier, no cross-site tracking, no device fingerprint.
+    // We deliberately send NO user/visitor id at all (GoatCounter counts
+    // visits via a salted, daily-rotating, non-stored hash on its side), so
+    // no individual is re-identifiable -> GDPR-compliant without a consent
+    // banner. All tracking is best-effort and wrapped in try/catch: a failed
+    // or blocked analytics call must NEVER stop the store redirect.
+    // =====================================================================
     (function () {
-      var IOS_URL = 'https://apps.apple.com/de/app/memoryfy-gemeinsames-filmen/id6759965346';
+      'use strict';
+
+      var GC_ENDPOINT = 'https://memoryfy.goatcounter.com/count';
+      var IOS_URL  = 'https://apps.apple.com/de/app/memoryfy-gemeinsames-filmen/id6759965346';
       var PLAY_URL = 'https://play.google.com/store/apps/details?id=de.cts.memoryfy';
 
+      // ---------------------------------------------------------------------
+      // Platform switch (unchanged behaviour): Android -> Play, iOS/iPadOS ->
+      // App Store, everything else -> desktop (stay on the page).
+      // iPadOS >=13 reports a desktop (Macintosh) UA, so detect it via touch.
+      // ---------------------------------------------------------------------
       var ua = navigator.userAgent || '';
       var isAndroid = /Android/i.test(ua);
-      // iPadOS >=13 reports a desktop (Macintosh) UA - detect it via touch
-      // support so iPads still get the App Store.
       var isIos = /iPhone|iPad|iPod/i.test(ua) ||
         (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
-
       var platform = isAndroid ? 'android' : (isIos ? 'ios' : 'desktop');
 
-      var url = 'https://memoryfy.goatcounter.com/count?p=' +
-        encodeURIComponent('/download-' + platform) + '&rnd=' + Math.random();
-      try {
-        fetch(url, { method: 'GET', mode: 'no-cors', keepalive: true, credentials: 'omit' });
-      } catch (e) {
-        new Image().src = url;
+      // ---------------------------------------------------------------------
+      // UTM attribution
+      // ---------------------------------------------------------------------
+      var qs;
+      try { qs = new URLSearchParams(location.search); } catch (e) { qs = null; }
+
+      // Read a UTM value; missing/blank -> "none" so every hit carries a full,
+      // predictable set and nothing can throw on a malformed URL.
+      function utmValue(name) {
+        try {
+          var v = qs ? qs.get(name) : null;
+          v = (v == null ? '' : ('' + v)).trim();
+          return v === '' ? 'none' : v;
+        } catch (e) {
+          return 'none';
+        }
+      }
+      // Make a value safe & tidy for use as a URL *path segment*.
+      function slug(v) {
+        return ('' + v).toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+          .slice(0, 40) || 'none';
       }
 
+      var utm = {
+        source:   utmValue('utm_source'),
+        medium:   utmValue('utm_medium'),
+        campaign: utmValue('utm_campaign'),
+        content:  utmValue('utm_content')
+      };
+      // Raw arrival referrer (best effort: ad networks / in-app browsers often
+      // strip it, so utm_source is the reliable campaign signal). We transmit
+      // the empty string as GoatCounter's native "no referrer", not the word
+      // "none", to keep the Referrers report clean.
+      var referrer = document.referrer || '';
+
+      // GoatCounter has no free-form event payload like TelemetryDeck, so each
+      // event is sent as a *virtual pageview* and the dimensions are mapped
+      // onto the fields GoatCounter actually stores:
+      //   p (path) : /download/<stage>/<utm_source>/<platform|target>  + the
+      //              remaining utm_* in its query string. Stage & campaign
+      //              source are countable with ZERO config; the funnel is
+      //              simply "landing_page_view path count" vs "store_redirect
+      //              path count", and the utm_source segment cross-tabs it by
+      //              campaign (e.g. .../meta/...). utm_medium / utm_campaign /
+      //              utm_content ride in the query string and appear in the
+      //              Paths report once "Collect query parameters" is enabled.
+      //   q        : the raw ?utm_... query string -> GoatCounter's built-in
+      //              Campaigns widget (it reads utm_source / utm_campaign).
+      //   r        : document.referrer -> Referrers widget.
+      function buildHitUrl(stage, leaf) {
+        var path = '/download/' + stage + '/' + slug(utm.source) + '/' + leaf +
+          '?utm_medium='   + encodeURIComponent(utm.medium) +
+          '&utm_campaign=' + encodeURIComponent(utm.campaign) +
+          '&utm_content='  + encodeURIComponent(utm.content) +
+          '&platform='     + encodeURIComponent(platform);
+        return GC_ENDPOINT +
+          '?p=' + encodeURIComponent(path) +
+          '&q=' + encodeURIComponent(location.search.replace(/^\?/, '')) +
+          '&r=' + encodeURIComponent(referrer) +
+          '&t=' + encodeURIComponent(document.title || '') +
+          '&rnd=' + Math.random().toString(36).slice(2);
+      }
+
+      // Fire one hit. Returns true ONLY when navigator.sendBeacon accepted it —
+      // in which case delivery is guaranteed even across an immediate redirect.
+      //
+      // Why sendBeacon: it is exactly what GoatCounter's own count.js uses; a
+      // beacon is a body-less POST => a CORS "simple" request => no preflight,
+      // it stays inside the page's existing `connect-src` CSP, and the API is
+      // purpose-built to survive page unload / navigation. If it is missing or
+      // blocked we fall back to an <img> GET pixel (allowed by `img-src`),
+      // which needs a short moment to leave before we navigate away.
+      function track(stage, leaf) {
+        var url;
+        try {
+          url = buildHitUrl(stage, leaf);
+          if (navigator.sendBeacon && navigator.sendBeacon(url)) {
+            return true;
+          }
+        } catch (e) { /* fall through to the pixel */ }
+        try {
+          if (url) { new Image().src = url; }
+        } catch (e) { /* analytics is best-effort — never rethrow */ }
+        return false;
+      }
+
+      // 1) landing_page_view — fires on load for every platform (incl. desktop).
+      try { track('landing_page_view', platform); } catch (e) {}
+
+      // 2) Desktop: no store redirect, just reveal the manual note and stop.
       if (platform === 'desktop') {
-        document.getElementById('desktop-note').classList.remove('hidden');
+        var note = document.getElementById('desktop-note');
+        if (note) { note.classList.remove('hidden'); }
         return;
       }
 
-      // Mobile: swap in the redirect state, then leave. The store buttons stay
-      // in the DOM as a fallback if the navigation is blocked or slow.
-      document.getElementById('picker').classList.add('hidden');
-      document.getElementById('redirect-target').textContent =
-        platform === 'ios' ? 'App Store' : 'Google Play';
-      document.getElementById('redirecting').classList.remove('hidden');
+      // 3) Mobile: swap in the redirect state (kept from the original switch).
+      //    The store buttons stay in the DOM as a fallback if navigation is
+      //    blocked or slow.
+      var target   = platform === 'ios' ? 'app_store' : 'play_store';
+      var storeUrl = platform === 'ios' ? IOS_URL : PLAY_URL;
+      try {
+        var picker = document.getElementById('picker');
+        if (picker) { picker.classList.add('hidden'); }
+        var tgt = document.getElementById('redirect-target');
+        if (tgt) { tgt.textContent = platform === 'ios' ? 'App Store' : 'Google Play'; }
+        var redir = document.getElementById('redirecting');
+        if (redir) { redir.classList.remove('hidden'); }
+      } catch (e) { /* the UI swap is cosmetic */ }
 
-      // replace() keeps this page out of the history stack, so Back returns to
-      // wherever the user came from instead of re-triggering the redirect.
-      window.location.replace(platform === 'ios' ? IOS_URL : PLAY_URL);
+      // 4) store_redirect — MUST be sent *before* we leave, otherwise the hit
+      //    is lost in the navigation. replace() keeps this page out of history
+      //    so Back returns to the origin instead of re-triggering the redirect.
+      var jumped = false;
+      function jump() {
+        if (jumped) { return; }
+        jumped = true;
+        try { window.location.replace(storeUrl); }
+        catch (e) { window.location.href = storeUrl; }
+      }
+      try {
+        // Beacon queued -> delivery guaranteed -> redirect immediately.
+        // Pixel fallback -> give it ~150 ms head-start before navigating.
+        if (track('store_redirect', target)) {
+          jump();
+        } else {
+          setTimeout(jump, 150);
+        }
+      } catch (e) {
+        jump();
+      }
+      // Hard safety net: whatever happens above, never strand the visitor.
+      setTimeout(jump, 800);
     })();
   </script>
 </body>
