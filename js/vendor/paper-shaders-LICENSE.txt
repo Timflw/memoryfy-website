@@ -1,3 +1,8 @@
+This file accompanies js/vendor/paper-shaders-0.0.80.js, a vendored bundle of
+@paper-design/shaders v0.0.80. Copyright (c) Paper Design (paper-design) and
+contributors. Source: https://github.com/paper-design/shaders — https://shaders.paper.design
+Licensed under the Apache License, Version 2.0; the full license text follows.
+
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
