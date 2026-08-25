@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; connect-src https://smqzjezxbtsylzwmmgzu.supabase.co; base-uri 'none'; frame-ancestors 'none'; form-action 'none';">
+  <title>Memoryfy – Einladung</title>
+  <link rel="icon" href="/assets/memoryfy_favicon.png" type="image/png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0f0f1a;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background-color: #1a1a2e;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo { height: 40px; width: auto; margin-bottom: 24px; }
+    h1 { font-size: 22px; margin-bottom: 12px; }
+    p { color: #a0a0b8; font-size: 15px; line-height: 1.6; }
+    .error { color: #ff6b6b; }
+    .highlight { color: #ffffff; font-weight: 600; }
+    .spinner {
+      border: 3px solid #1a1a2e;
+      border-top: 3px solid #4a9eff;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none; }
+    .stores { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .store-button {
+      display: block;
+      background-color: #4a9eff;
+      color: #0f0f1a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+    .store-button--secondary {
+      background-color: transparent;
+      color: #4a9eff;
+      border: 1px solid #4a9eff;
+    }
+    .desktop-note, .reopen-note { margin-top: 20px; font-size: 13px; color: #7a7a94; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/assets/logo.png" alt="Memoryfy" class="logo">
+
+    <div id="loading">
+      <div class="spinner"></div>
+      <p>Einladung wird geladen&hellip;</p>
+    </div>
+
+    <div id="invite" class="hidden">
+      <h1><span id="inviter-name" class="highlight"></span> lädt dich ein!</h1>
+      <p>Mach mit beim Event <span id="event-title" class="highlight"></span>
+        und haltet eure gemeinsamen Momente als Video fest.</p>
+      <div class="stores">
+        <a id="store-android" class="store-button hidden" href="#">Bei Google Play laden</a>
+        <a id="store-ios" class="store-button hidden"
+           href="https://apps.apple.com/de/app/memoryfy-gemeinsames-filmen/id6759965346">Im App Store laden</a>
+      </div>
+      <p id="reopen-note" class="reopen-note hidden">
+        App bereits installiert? Öffne diesen Link einfach noch einmal –
+        er führt dich direkt in die App.
+      </p>
+      <p id="desktop-note" class="desktop-note hidden">
+        Memoryfy ist eine mobile App. Öffne diesen Link auf deinem Smartphone,
+        um der Einladung zu folgen.
+      </p>
+    </div>
+
+    <div id="error-expired" class="hidden">
+      <h1 class="error">Einladung abgelaufen</h1>
+      <p>Dieser Einladungslink ist nicht mehr gültig. Bitte lass dir einen
+        neuen Link schicken.</p>
+    </div>
+
+    <div id="error-invalid" class="hidden">
+      <h1 class="error">Einladung nicht gefunden</h1>
+      <p>Dieser Einladungslink ist nicht gültig.</p>
+    </div>
+
+    <div id="error-network" class="hidden">
+      <h1 class="error">Etwas ist schiefgelaufen</h1>
+      <p>Bitte versuche es später erneut.</p>
+    </div>
+  </div>
+
+  <script>
+    var FUNCTION_URL = 'https://smqzjezxbtsylzwmmgzu.supabase.co/functions/v1/resolve-invite-token';
+    var PLAY_URL = 'https://play.google.com/store/apps/details?id=de.cts.memoryfy';
+
+    function show(id) {
+      ['loading', 'invite', 'error-expired', 'error-invalid', 'error-network']
+        .forEach(function (x) { document.getElementById(x).classList.add('hidden'); });
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    // Token arrives as /i/?t=TOKEN (404.html redirect) or /i/TOKEN when a
+    // server routes the path directly.
+    var token = new URLSearchParams(window.location.search).get('t');
+    if (!token) {
+      var match = window.location.pathname.match(/^\/i\/([^\/]+)\/?$/);
+      if (match) { token = decodeURIComponent(match[1]); }
+    }
+
+    if (!token) {
+      show('error-invalid');
+    } else {
+      fetch(FUNCTION_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: token })
+      }).then(function (res) {
+        if (!res.ok) { show('error-network'); return; }
+        return res.json().then(function (data) {
+          if (!data) { show('error-network'); return; }
+          if (data.valid) {
+            // textContent only — never inject server data as HTML.
+            document.getElementById('inviter-name').textContent =
+              data.inviter_name || 'Jemand';
+            document.getElementById('event-title').textContent =
+              data.event_title || '';
+
+            var ua = navigator.userAgent || '';
+            var isAndroid = /Android/i.test(ua);
+            // iPadOS ≥13 reports a desktop (Macintosh) UA — detect it via
+            // touch support so iPad invitees get the iOS flow.
+            var isIos = /iPhone|iPad|iPod/i.test(ua) ||
+              (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+
+            if (isAndroid) {
+              // Install Referrer keeps the invite context through the
+              // Play Store install (deferred deep link).
+              var androidButton = document.getElementById('store-android');
+              androidButton.href = PLAY_URL +
+                '&referrer=' + encodeURIComponent('invite=' + token);
+              androidButton.classList.remove('hidden');
+              document.getElementById('reopen-note').classList.remove('hidden');
+            } else if (isIos) {
+              document.getElementById('store-ios').classList.remove('hidden');
+              // iOS two-scan: after install the same link opens the app via
+              // Universal Links.
+              document.getElementById('reopen-note').classList.remove('hidden');
+            } else {
+              // Desktop: mobile-app note plus both store links.
+              document.getElementById('store-android').href = PLAY_URL;
+              document.getElementById('store-android').classList.remove('hidden');
+              document.getElementById('store-ios').classList.remove('hidden');
+              document.getElementById('desktop-note').classList.remove('hidden');
+            }
+            show('invite');
+          } else if (data.reason === 'not_found') {
+            show('error-invalid');
+          } else {
+            show('error-expired');
+          }
+        });
+      }).catch(function () { show('error-network'); });
+    }
+  </script>
+</body>
+</html>

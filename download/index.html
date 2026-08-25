@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' https://memoryfy.goatcounter.com; connect-src https://memoryfy.goatcounter.com; base-uri 'none'; frame-ancestors 'none'; form-action 'none';">
+  <title>Memoryfy laden</title>
+  <link rel="icon" href="/assets/memoryfy_favicon.png" type="image/png">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0f0f1a;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .card {
+      background-color: #1a1a2e;
+      border-radius: 16px;
+      padding: 40px 32px;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+    }
+    .logo { height: 40px; width: auto; margin-bottom: 24px; }
+    h1 { font-size: 22px; margin-bottom: 12px; }
+    p { color: #a0a0b8; font-size: 15px; line-height: 1.6; }
+    .spinner {
+      border: 3px solid #1a1a2e;
+      border-top: 3px solid #4a9eff;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .hidden { display: none; }
+
+    .stores { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .store-button {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 0.85rem;
+      padding: 0.85rem 1.15rem;
+      border-radius: 12px;
+      text-decoration: none;
+      background: #000;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      color: rgba(255, 255, 255, 0.98);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .store-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      border-color: rgba(255, 255, 255, 0.32);
+    }
+    .store-button:focus-visible {
+      outline: 3px solid rgba(165, 180, 252, 0.65);
+      outline-offset: 3px;
+    }
+    .store-button__icon-wrap {
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 0 0 auto;
+    }
+    .store-button__icon {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
+    }
+    .store-button__text {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.1rem;
+      text-align: left;
+      min-width: 0;
+    }
+    .store-button__meta {
+      font-size: 0.8rem;
+      letter-spacing: 0.02em;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.1;
+    }
+    .store-button__brand {
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    .note { margin-top: 20px; font-size: 13px; color: #7a7a94; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="/assets/logo.png" alt="Memoryfy" class="logo">
+
+    <!-- Redirect state: only ever shown on iOS/Android, where the JS below
+         navigates away immediately. Stays hidden if the redirect never fires. -->
+    <div id="redirecting" class="hidden">
+      <div class="spinner"></div>
+      <p>Du wirst zum <span id="redirect-target">Store</span> weitergeleitet&hellip;</p>
+    </div>
+
+    <div id="picker">
+      <h1>Memoryfy laden</h1>
+      <p>Gemeinsames Filmen ohne Schnitt. W&auml;hle deinen Store:</p>
+    </div>
+
+    <div class="stores">
+      <a class="store-button" href="https://apps.apple.com/de/app/memoryfy-gemeinsames-filmen/id6759965346"
+         title="Im App Store &ouml;ffnen">
+        <span class="store-button__icon-wrap" aria-hidden="true">
+          <img class="store-button__icon" src="/assets/Applelogo%20200x200.png" alt="">
+        </span>
+        <span class="store-button__text">
+          <span class="store-button__meta">Download on the</span>
+          <span class="store-button__brand">App Store</span>
+        </span>
+      </a>
+      <a class="store-button" href="https://play.google.com/store/apps/details?id=de.cts.memoryfy"
+         title="Bei Google Play &ouml;ffnen">
+        <span class="store-button__icon-wrap" aria-hidden="true">
+          <img class="store-button__icon" src="/assets/Playstore%20200x200.png" alt="">
+        </span>
+        <span class="store-button__text">
+          <span class="store-button__meta">Get it on</span>
+          <span class="store-button__brand">Google Play</span>
+        </span>
+      </a>
+    </div>
+
+    <p id="desktop-note" class="note hidden">
+      Memoryfy ist eine mobile App. Scanne die Seite mit deinem Smartphone
+      oder w&auml;hle den passenden Store.
+    </p>
+  </div>
+
+  <noscript>
+    <img src="https://memoryfy.goatcounter.com/count?p=/download-noscript" alt=""
+         style="position:absolute;left:-9999px">
+  </noscript>
+
+  <script>
+    // =====================================================================
+    // Download switch + UTM attribution tracking (GoatCounter web ingest)
+    // ---------------------------------------------------------------------
+    // GoatCounter is cookieless and stores no personal data or IP addresses,
+    // so there is nothing to consent to: no cookies, no localStorage, no
+    // persistent identifier, no cross-site tracking, no device fingerprint.
+    // We deliberately send NO user/visitor id at all (GoatCounter counts
+    // visits via a salted, daily-rotating, non-stored hash on its side), so
+    // no individual is re-identifiable -> GDPR-compliant without a consent
+    // banner. All tracking is best-effort and wrapped in try/catch: a failed
+    // or blocked analytics call must NEVER stop the store redirect.
+    // =====================================================================
+    (function () {
+      'use strict';
+
+      var GC_ENDPOINT = 'https://memoryfy.goatcounter.com/count';
+      var IOS_URL  = 'https://apps.apple.com/de/app/memoryfy-gemeinsames-filmen/id6759965346';
+      var PLAY_URL = 'https://play.google.com/store/apps/details?id=de.cts.memoryfy';
+
+      // ---------------------------------------------------------------------
+      // Platform switch (unchanged behaviour): Android -> Play, iOS/iPadOS ->
+      // App Store, everything else -> desktop (stay on the page).
+      // iPadOS >=13 reports a desktop (Macintosh) UA, so detect it via touch.
+      // ---------------------------------------------------------------------
+      var ua = navigator.userAgent || '';
+      var isAndroid = /Android/i.test(ua);
+      var isIos = /iPhone|iPad|iPod/i.test(ua) ||
+        (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+      var platform = isAndroid ? 'android' : (isIos ? 'ios' : 'desktop');
+
+      // ---------------------------------------------------------------------
+      // UTM attribution
+      // ---------------------------------------------------------------------
+      var qs;
+      try { qs = new URLSearchParams(location.search); } catch (e) { qs = null; }
+
+      // Read a UTM value; missing/blank -> "none" so every hit carries a full,
+      // predictable set and nothing can throw on a malformed URL.
+      function utmValue(name) {
+        try {
+          var v = qs ? qs.get(name) : null;
+          v = (v == null ? '' : ('' + v)).trim();
+          return v === '' ? 'none' : v;
+        } catch (e) {
+          return 'none';
+        }
+      }
+      // Make a value safe & tidy for use as a URL *path segment*.
+      function slug(v) {
+        return ('' + v).toLowerCase()
+          .replace(/[^a-z0-9_-]+/g, '-')
+          .replace(/^-+|-+$/g, '')
+          .slice(0, 40) || 'none';
+      }
+
+      var utm = {
+        source:   utmValue('utm_source'),
+        medium:   utmValue('utm_medium'),
+        campaign: utmValue('utm_campaign'),
+        content:  utmValue('utm_content')
+      };
+      // Raw arrival referrer (best effort: ad networks / in-app browsers often
+      // strip it, so utm_source is the reliable campaign signal). We transmit
+      // the empty string as GoatCounter's native "no referrer", not the word
+      // "none", to keep the Referrers report clean.
+      var referrer = document.referrer || '';
+
+      // GoatCounter has no free-form event payload like TelemetryDeck, so each
+      // event is sent as a *virtual pageview* and the dimensions are mapped
+      // onto the fields GoatCounter actually stores:
+      //   p (path) : /download/<stage>/<utm_source>/<platform|target>  + the
+      //              remaining utm_* in its query string. Stage & campaign
+      //              source are countable with ZERO config; the funnel is
+      //              simply "landing_page_view path count" vs "store_redirect
+      //              path count", and the utm_source segment cross-tabs it by
+      //              campaign (e.g. .../meta/...). utm_medium / utm_campaign /
+      //              utm_content ride in the query string and appear in the
+      //              Paths report once "Collect query parameters" is enabled.
+      //   q        : the raw ?utm_... query string -> GoatCounter's built-in
+      //              Campaigns widget (it reads utm_source / utm_campaign).
+      //   r        : document.referrer -> Referrers widget.
+      function buildHitUrl(stage, leaf) {
+        var path = '/download/' + stage + '/' + slug(utm.source) + '/' + leaf +
+          '?utm_medium='   + encodeURIComponent(utm.medium) +
+          '&utm_campaign=' + encodeURIComponent(utm.campaign) +
+          '&utm_content='  + encodeURIComponent(utm.content) +
+          '&platform='     + encodeURIComponent(platform);
+        return GC_ENDPOINT +
+          '?p=' + encodeURIComponent(path) +
+          '&q=' + encodeURIComponent(location.search.replace(/^\?/, '')) +
+          '&r=' + encodeURIComponent(referrer) +
+          '&t=' + encodeURIComponent(document.title || '') +
+          '&rnd=' + Math.random().toString(36).slice(2);
+      }
+
+      // Fire one hit. Returns true ONLY when navigator.sendBeacon accepted it —
+      // in which case delivery is guaranteed even across an immediate redirect.
+      //
+      // Why sendBeacon: it is exactly what GoatCounter's own count.js uses; a
+      // beacon is a body-less POST => a CORS "simple" request => no preflight,
+      // it stays inside the page's existing `connect-src` CSP, and the API is
+      // purpose-built to survive page unload / navigation. If it is missing or
+      // blocked we fall back to an <img> GET pixel (allowed by `img-src`),
+      // which needs a short moment to leave before we navigate away.
+      function track(stage, leaf) {
+        var url;
+        try {
+          url = buildHitUrl(stage, leaf);
+          if (navigator.sendBeacon && navigator.sendBeacon(url)) {
+            return true;
+          }
+        } catch (e) { /* fall through to the pixel */ }
+        try {
+          if (url) { new Image().src = url; }
+        } catch (e) { /* analytics is best-effort — never rethrow */ }
+        return false;
+      }
+
+      // 1) landing_page_view — fires on load for every platform (incl. desktop).
+      try { track('landing_page_view', platform); } catch (e) {}
+
+      // 2) Desktop: no store redirect, just reveal the manual note and stop.
+      if (platform === 'desktop') {
+        var note = document.getElementById('desktop-note');
+        if (note) { note.classList.remove('hidden'); }
+        return;
+      }
+
+      // 3) Mobile: swap in the redirect state (kept from the original switch).
+      //    The store buttons stay in the DOM as a fallback if navigation is
+      //    blocked or slow.
+      var target   = platform === 'ios' ? 'app_store' : 'play_store';
+      var storeUrl = platform === 'ios' ? IOS_URL : PLAY_URL;
+      try {
+        var picker = document.getElementById('picker');
+        if (picker) { picker.classList.add('hidden'); }
+        var tgt = document.getElementById('redirect-target');
+        if (tgt) { tgt.textContent = platform === 'ios' ? 'App Store' : 'Google Play'; }
+        var redir = document.getElementById('redirecting');
+        if (redir) { redir.classList.remove('hidden'); }
+      } catch (e) { /* the UI swap is cosmetic */ }
+
+      // 4) store_redirect — MUST be sent *before* we leave, otherwise the hit
+      //    is lost in the navigation. replace() keeps this page out of history
+      //    so Back returns to the origin instead of re-triggering the redirect.
+      var jumped = false;
+      function jump() {
+        if (jumped) { return; }
+        jumped = true;
+        try { window.location.replace(storeUrl); }
+        catch (e) { window.location.href = storeUrl; }
+      }
+      try {
+        // Beacon queued -> delivery guaranteed -> redirect immediately.
+        // Pixel fallback -> give it ~150 ms head-start before navigating.
+        if (track('store_redirect', target)) {
+          jump();
+        } else {
+          setTimeout(jump, 150);
+        }
+      } catch (e) {
+        jump();
+      }
+      // Hard safety net: whatever happens above, never strand the visitor.
+      setTimeout(jump, 800);
+    })();
+  </script>
+</body>
+</html>
