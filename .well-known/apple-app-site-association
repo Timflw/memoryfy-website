@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "REPLACE_WITH_TEAM_ID.de.cts.memoryfy",
+        "appID": "de.cts.memoryfy",
         "paths": ["/i/*"]
       }
     ]
