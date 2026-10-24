@@ -12,11 +12,13 @@ All page content and UI copy is **German** (`lang="de"`). Keep it that way; code
 
 ## Local preview
 
-`python3 -m http.server 8000` from the repo root, then open `http://localhost:8000/`. `file://` does not work: `js/hero-shader.js` is an ES module, `js/article-loader.js` `fetch()`es `articles.json`, and `/download/`, `/i/`, `/auth/reset/`, `404.html` use root-absolute paths. The `404.html` → `/i/<TOKEN>` rewrite only works on GitHub Pages (custom 404 routing), not on the local server.
+`python3 -m http.server 8000` from the repo root, then open `http://localhost:8000/`. `file://` does not work: `js/article-loader.js` `fetch()`es `articles.json`, and `/download/`, `/i/`, `/auth/reset/`, `404.html` use root-absolute paths. The `404.html` → `/i/<TOKEN>` rewrite only works on GitHub Pages (custom 404 routing), not on the local server.
 
 ## Gotchas
 
-- **Hero shader** (`js/hero-shader.js`): see the dedicated section below — the noise texture must be `await`ed before `ShaderMount`, and failures must fall back silently to the CSS gradient on `.hero`.
+- **Landing page** (`index.html`) has its own stylesheet `css/home.css` and script `js/home.js`; it does **not** load `css/main.css`, `css/wissen.css` or `js/main.js` (all subpages still do). Design source: Paper file "Memoryfy – Website", page "Kandidaten", artboards **V1.14 – App-nah** (Desktop 1440 / Mobile 390 / Sticky Header). Images for it live in `assets/home/`.
+- The subpage menus link to `../#idee` and `../#team`. `#idee` is an alias id on the "In drei Schritten" heading — keep both ids when editing the landing page.
+- The landing-page header CTA "App laden" goes to `/download/?utm_source=website&utm_medium=header` (store redirect + GoatCounter on phones); on fine-pointer devices `js/home.js` scrolls to the hero store badges (`#download`, with QR hover) instead.
 - **Newsletter pages** (`newsletter/confirm/`, `newsletter/unsubscribe/`) each have a `dev/` twin pointing at the dev Supabase project. Always apply the same edit to both; only the Supabase host differs, and each page's CSP `connect-src` must match its own host.
 - **Tracking/redirect pages** (`/download/`, `/qr-*/`, `/insta/`, `/tiktok/`, `/yt/`): GoatCounter, cookieless, no consent banner by design. All analytics calls stay inside `try/catch` and must never delay or block the redirect. Use `location.replace`, not `href`.
 - **`/i/`** renders server data with `textContent` only — never `innerHTML`.
@@ -26,7 +28,9 @@ All page content and UI copy is **German** (`lang="de"`). Keep it that way; code
 - `sitemap.xml` is not maintained when articles are added; treat it as stale.
 - `.nojekyll` must stay — GitHub Pages would otherwise drop `.well-known/`.
 
-## Hero shader
+## Hero shader (currently unused)
+
+> Since the V1.14 redesign no page loads `js/hero-shader.js`; the landing-page hero uses a static gradient. The files and this section are kept in case the shader comes back.
 
 The animated background of the landing-page hero is a Paper Shaders **Warp** shader, mounted only on `index.html` (no other page loads the module). Design source: Paper Design file "Website Shader", artboards **A · Tiefsee** (the implemented variant), **B · Aurora**, **C · Glas**.
 
